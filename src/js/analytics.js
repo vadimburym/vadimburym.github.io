@@ -1,4 +1,4 @@
-import { site } from './data/site.js?v=20261009-metrica';
+import { site } from './data/site.js?v=20261009-metrica-live';
 import { analyticsEnabled, linkGoal } from './lib/analytics.js?v=20261009-metrica';
 
 // Independent of the UI module graph. Analytics must never block the portfolio.
@@ -8,9 +8,9 @@ if (analyticsEnabled(site.metricaId, location.hostname)) {
   window.ym.l = Date.now();
   const script = document.createElement('script');
   script.async = true;
-  script.src = 'https://mc.yandex.ru/metrika/tag.js';
+  script.src = `https://mc.yandex.ru/metrika/tag.js?id=${id}`;
   document.head.append(script);
-  window.ym(id, 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
+  window.ym(id, 'init', { ssr: true, clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true, referrer: document.referrer, url: location.href });
 
   function goal(name, params = {}) {
     try { window.ym(id, 'reachGoal', name, { page: location.pathname, ...params }); }
