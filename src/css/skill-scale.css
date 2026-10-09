@@ -1,0 +1,20 @@
+.scale-guide-animated .scale-heading{padding-top:0;justify-content:center}
+.scale-preview{display:grid;place-items:center;padding:12px 0}
+.scale-preview .level i{transition:background-color 450ms ease,box-shadow 450ms ease}
+.scale-guide-animated .scale-items{gap:10px}
+.scale-guide-animated .scale-items li{padding:12px;border-radius:0 0 8px 8px;transition:background-color 450ms ease,border-color 450ms ease}
+.scale-guide-animated .scale-items li.is-current{background:#e7ebdf;border-top-color:#8a987e}
+.scale-choice{display:flex;flex-direction:column;align-items:flex-start;gap:12px;width:100%;height:100%;text-align:left;font:inherit;color:inherit;border-radius:6px}
+.scale-guide-animated .scale-items li{padding:0}
+.scale-choice{padding:12px}
+.scale-choice:focus-visible{outline-offset:-2px}
+.scale-preview{min-height:44px;gap:2px}
+@media(max-width:640px){
+  .scale-guide-animated{grid-template-columns:1fr;gap:8px}
+  .scale-guide-animated .scale-heading{justify-content:flex-start}
+  .scale-preview{display:flex;gap:14px;padding:0;min-height:40px}
+  .scale-guide-animated .scale-items{gap:0;grid-template-columns:1fr}
+  .scale-guide-animated .scale-items li{display:block;padding:0;border-radius:5px}
+  .scale-choice{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:center;padding:5px 10px;min-height:44px;font-size:12px;line-height:18px}
+  .scale-choice .scale-number{font-size:13px;line-height:20px}
+}

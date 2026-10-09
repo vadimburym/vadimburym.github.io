@@ -1,0 +1,92 @@
+.catalog-intro{padding-top:36px;padding-bottom:40px}
+#content:focus{outline:none}
+.back-link{display:inline-block;font-size:13px;color:var(--muted);margin-bottom:42px}
+.back-link:hover{text-decoration:underline;text-underline-offset:5px}
+.catalog-title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.catalog-title-row h1{margin:16px 0 0;font-size:64px}
+.catalog-lead{max-width:660px;color:var(--muted);font-size:16px;line-height:27px;margin-top:20px}
+.catalog-intro .scale-guide{margin-top:42px}
+.catalog-masthead{position:relative;isolation:isolate;min-height:220px;padding-bottom:32px}
+.catalog-art-window{position:absolute;z-index:-1;inset:0 calc(-1 * var(--gutter)) 0 46%;overflow:hidden;pointer-events:none;user-select:none;mask-image:linear-gradient(to right,transparent,#000 20%)}
+.catalog-header-art{position:absolute;width:440px;height:440px;right:var(--gutter);bottom:-220px;object-fit:contain;opacity:.2;mask-image:linear-gradient(to bottom,#000 35%,#0008 48%,transparent 53%)}
+.catalog-masthead+[data-skill-scale] .scale-guide{margin-top:20px}
+.catalog-content{padding:0 var(--gutter) 88px}
+.skill-search{margin:0 0 28px}
+.search-field{display:flex;align-items:center;gap:14px;border:1px solid #cbd2c3;border-radius:12px;background:#fffdf9;padding:0 18px;transition:border-color 160ms,box-shadow 160ms}
+.search-field:focus-within{border-color:var(--green);box-shadow:0 0 0 3px #697d6118}
+.search-field>svg{width:22px;height:22px;flex-shrink:0;color:var(--muted)}
+.search-field input{min-width:0;flex:1;width:100%;height:60px;border:0;padding:0;background:none;font:15px/24px Onest,Arial,sans-serif;color:var(--ink);outline:none;appearance:none}
+.search-field input::placeholder{color:#747c6f}
+.search-field input::-webkit-search-cancel-button{display:none}
+.search-field button{width:36px;height:36px;flex-shrink:0;font-size:24px;border-radius:50%;color:var(--muted)}
+.search-field button:hover{background:var(--sage)}
+.skill-category{padding:0}
+.category-heading{margin:0;font:500 16px/24px Onest,Arial,sans-serif;letter-spacing:0;text-wrap:initial}
+.category-label{display:flex;align-items:center;gap:10px;min-width:0}
+.category-toggle{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;min-height:56px;padding:14px 18px;text-align:left;background:#e7e9e0;border-bottom:1px solid #d4d9cd;transition:background-color 160ms}
+.category-toggle:hover{background:#dfe4d6}
+.category-toggle:focus-visible{outline-offset:-3px}
+.category-chevron{width:8px;height:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);margin-right:17px;flex-shrink:0;transition:transform 260ms var(--ease-out)}
+.category-toggle[aria-expanded='false'] .category-chevron{transform:rotate(-45deg)}
+#skill-results>.column-head{padding-inline:18px}
+.skill-category .skill{padding-inline:18px;min-height:76px}
+.skill-category .skill:first-of-type{border-top:0}
+.empty-search{padding:52px 20px;text-align:center;border-block:1px solid var(--line)}
+.empty-search h2{font-size:28px}
+.empty-search p{margin:16px 0 24px;font-size:15px;line-height:25px;color:var(--muted)}
+.catalog-footer{display:flex;justify-content:space-between;align-items:center;gap:24px;border-top:1px solid var(--line);padding:30px var(--gutter);font-size:12px;line-height:22px;color:var(--muted)}
+.catalog-footer-contacts{display:flex;align-items:center;gap:10px;white-space:nowrap;color:var(--ink)}
+.catalog-footer-email{font-size:13px;font-weight:500;margin-right:8px}
+.catalog-footer-email:hover{text-decoration:underline;text-underline-offset:4px}
+.catalog-footer-social{display:inline-flex;align-items:center;gap:7px;padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#fffdf9;font-size:12px;font-weight:500;line-height:18px;transition:background-color 160ms,border-color 160ms}
+.catalog-footer-social:hover{background:var(--sage);border-color:#c1cbb8}
+.catalog-footer-social img{width:16px;height:16px;flex-shrink:0}
+.catalog-footer-social .social-arrow{margin-left:4px;color:var(--muted)}
+.route-placeholder{min-height:calc(100vh - var(--header-height) - 100px)}
+.route-placeholder .button{margin-top:30px}
+@media(max-width:900px){
+  .catalog-header-art{width:380px;height:380px;bottom:-190px;right:-24px;opacity:.16}
+  .catalog-title-row h1{font-size:56px}
+  .catalog-title-row{align-items:flex-start;flex-direction:column;gap:16px}
+  .catalog-intro .scale-guide{margin-top:32px}
+}
+@media(max-width:640px){
+  .catalog-masthead{min-height:195px;padding-bottom:32px}
+  .catalog-header-art{width:280px;height:280px;bottom:-140px;right:-48px;opacity:.13}
+  .catalog-masthead+[data-skill-scale] .scale-guide{margin-top:8px}
+  .catalog-intro{padding-top:24px;padding-bottom:30px}
+  .back-link{margin-bottom:32px}
+  .catalog-title-row h1{font-size:44px;margin-top:12px}
+  .catalog-lead{font-size:14px;line-height:24px;margin-top:16px}
+  .catalog-content{padding-bottom:52px}
+  .skill-search{margin-bottom:30px}
+  .search-field{gap:10px;padding:0 12px}
+  .search-field input{font-size:13px;height:56px}
+  .category-heading{font-size:14px;line-height:22px}
+  .category-toggle{padding:13px 12px;min-height:52px;gap:16px}
+  .category-chevron{margin-right:10px}
+  .skill-category .skill{padding-inline:12px}
+  .catalog-footer{align-items:flex-start;flex-direction:column;gap:12px;padding-block:24px}
+  .catalog-footer-contacts{width:100%;gap:6px}
+  .catalog-footer-email{font-size:11px;margin-right:auto}
+  .catalog-footer-social{gap:4px;padding:7px 6px;font-size:11px}
+  .catalog-footer-social img{width:14px;height:14px}
+  .catalog-footer-social .social-arrow{display:none}
+}
+@media(max-width:380px){.catalog-footer-social{padding-inline:4px}}
+
+/* Compact only on phones; keep the desktop composition. */
+@media(max-width:640px){
+  body:not([data-page='cv']) .catalog-masthead{min-height:140px;padding-bottom:20px}
+  body:not([data-page='cv']) .catalog-intro{padding-top:18px;padding-bottom:22px}
+  body:not([data-page='cv']) .back-link{margin-bottom:22px;min-height:24px}
+  body:not([data-page='cv']) .catalog-title-row h1{font-size:38px}
+  body:not([data-page='cv']) .catalog-header-art{width:230px;height:230px;bottom:-115px;right:-40px}
+  .skill-search{margin-bottom:20px}
+  .search-field input{font-size:16px;height:52px}
+  .search-field button{width:44px;height:44px}
+  .skill-name,.skill-desc{overflow-wrap:anywhere}
+  body:not([data-page='cv']) .catalog-footer-contacts{flex-wrap:wrap;gap:8px 12px}
+  body:not([data-page='cv']) .catalog-footer-email{font-size:13px;min-height:44px;overflow-wrap:anywhere;white-space:normal}
+  body:not([data-page='cv']) .catalog-footer-social{min-height:44px;padding:9px 10px;font-size:12px}
+}

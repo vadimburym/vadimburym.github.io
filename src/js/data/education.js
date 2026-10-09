@@ -1,0 +1,6 @@
+// Education and supporting documents; shared by cards and detail dialogs.
+export const education = [
+  { id: 'bachelor', name: 'Бакалавриат', institution: 'Южный Федеральный Университет', logo: '/assets/images/education/sfedu-logo.webp', program: 'Прикладная математика и информатика', date: '2019–2024', description: '', gallery: [{ src: '/assets/images/education/bachelor-diploma.webp', alt: 'Диплом бакалавра — Вадим Бурым' }] },
+  { id: 'master', name: 'Магистратура', institution: 'Южный Федеральный Университет', logo: '/assets/images/education/sfedu-logo.webp', program: 'Фундаментальная информатика и информационные технологии', programName: 'Разработка мобильных приложений и компьютерных игр', date: '2024–2026', description: '', gallery: [{ src: '/assets/images/education/master-diploma.webp', alt: 'Диплом магистра — Вадим Бурым' }] },
+  { id: 'professional-development', name: 'Повышение квалификации', institution: 'ООО "Отус онлайн-образование"', logo: '/assets/images/education/otus-logo.webp', program: 'Unity Game Developer. Professional', date: '2025–2026', description: '', gallery: [{ src: '/assets/images/education/professional-development.webp', alt: 'Удостоверение о повышении квалификации — Unity Game Developer. Professional' }] },
+];
