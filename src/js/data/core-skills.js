@@ -958,7 +958,7 @@ export const coreSkills = [
     "order": 47,
     "level": 4,
     "featured": true,
-    "featuredOrder": 1,
+    "featuredOrder": 8,
     "icon": null,
     "aliases": [
       "ИИ-инструменты",
