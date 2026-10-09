@@ -1,6 +1,6 @@
 import { element } from './skill-list.js?v=20261009-mobile-review';
-import { createSkillGallery } from './skill-gallery.js?v=20261009-gallery-landscape';
-import { mountUrlDialog } from './url-dialog.js?v=20261009-gallery-landscape';
+import { createSkillGallery } from './skill-gallery.js?v=20261009-gallery-quiet';
+import { mountUrlDialog } from './url-dialog.js?v=20261009-gallery-quiet';
 import { createProjectAction } from './project-action.js?v=20261009-mobile-review';
 
 export function mountProjectDialog(projects) {

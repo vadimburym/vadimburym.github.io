@@ -45,9 +45,6 @@ export function createSkillGallery(items, label = 'Галерея навыка')
   let current = 0;
   let activeSlide = null;
   let closing = false;
-  let displaySession = 0;
-  let orientationLocked = false;
-  let nativeFullscreen = false;
   // One image at a time warms the browser cache without downloading gallery videos.
   let preloadGeneration = 0;
   async function preloadImages() {
@@ -62,35 +59,6 @@ export function createSkillGallery(items, label = 'Галерея навыка')
   function updateDisplay() {
     const item = items[current];
     viewer.classList.toggle('gallery-viewer-image', Boolean(item.src && !/\.(mp4|webm)$/i.test(item.src)));
-  }
-  async function enterFullscreen(session) {
-    if (!matchMedia('(pointer: coarse)').matches || !viewer.classList.contains('gallery-viewer-image') || !viewport.requestFullscreen || document.fullscreenElement) return;
-    try {
-      await viewport.requestFullscreen();
-      if (!viewer.open || session !== displaySession) {
-        if (document.fullscreenElement === viewport) await document.exitFullscreen();
-        return;
-      }
-      nativeFullscreen = true;
-      if (screen.orientation?.lock) {
-        await screen.orientation.lock('landscape');
-        if (!viewer.open || session !== displaySession) screen.orientation.unlock();
-        else orientationLocked = true;
-      }
-    } catch { /* The rotated viewport also works without fullscreen or orientation APIs. */ }
-  }
-  function leaveFullscreen() {
-    displaySession++;
-    document.removeEventListener('fullscreenchange', fullscreenChanged);
-    nativeFullscreen = false;
-    if (orientationLocked) {
-      screen.orientation.unlock();
-      orientationLocked = false;
-    }
-    if (document.fullscreenElement === viewport) document.exitFullscreen().catch(() => {});
-  }
-  function fullscreenChanged() {
-    if (nativeFullscreen && document.fullscreenElement !== viewport) closeViewer(true);
   }
   function pauseVideo() { stage.querySelectorAll('video').forEach(video => video.pause()); }
   function visual(item, index) {
@@ -179,7 +147,6 @@ export function createSkillGallery(items, label = 'Галерея навыка')
     buttons.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === current)));
   }
   function restore() {
-    leaveFullscreen();
     pauseVideo();
     gallery.insertBefore(frame, viewer);
     gallery.insertBefore(dots, viewer);
@@ -200,8 +167,6 @@ export function createSkillGallery(items, label = 'Галерея навыка')
     viewport.append(frame, dots);
     expand.hidden = true;
     viewer.showModal();
-    document.addEventListener('fullscreenchange', fullscreenChanged);
-    enterFullscreen(++displaySession);
     close.focus({ preventScroll: true });
     animate(viewer, [{ opacity: 0 }, { opacity: 1 }], { duration: 220 });
   });
