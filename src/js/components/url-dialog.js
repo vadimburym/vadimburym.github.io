@@ -69,10 +69,13 @@ export function mountUrlDialog({ parameter, find, render, canonicalId = id => id
     closing = closeRequested = false;
     dialog.classList.remove('is-closing');
     if (reopening) stopMotion(dialog);
-    if (currentId !== id) {
+    const changed = currentId !== id;
+    const wasOpen = dialog.open;
+    if (changed) {
       dialog.querySelectorAll('.skill-gallery').forEach(gallery => gallery.dispatchEvent(new Event('gallery-close')));
       render(item, body);
       currentId = id;
+      dialog.dataset[parameter] = id;
     }
     if (!dialog.open) {
       document.querySelectorAll('video').forEach(video => video.pause());
@@ -87,6 +90,7 @@ export function mountUrlDialog({ parameter, find, render, canonicalId = id => id
     } else if (reopening) {
       animate(dialog, [{ opacity: .6 }, { opacity: 1 }], { duration: 180 });
     }
+    if (changed || !wasOpen) document.dispatchEvent(new CustomEvent('portfolio:dialog-open', { detail: { type: parameter, id } }));
   }
   function requestClose() {
     if (closing || closeRequested || !dialog.open) return;
