@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import { analyticsEnabled, linkGoal } from '../js/lib/analytics.js';
+import { projects } from '../js/data/projects.js';
 
 test('analytics runs only with a real counter on the public domain', () => {
   assert.ok(analyticsEnabled(12345, 'vadimburym.ru'));
@@ -27,7 +28,7 @@ test('public counter initializes once and records actual video starts without co
   for (const hostname of ['vadimburym.ru', 'localhost']) {
     const calls = [], scripts = [], listeners = new Map();
     const context = {
-      site: { metricaId: 113589005 }, analyticsEnabled, linkGoal, URL, WeakSet, Date,
+      site: { metricaId: 113589005 }, projects, analyticsEnabled, linkGoal, URL, WeakSet, Date,
       window: { ym: (...args) => calls.push(args) },
       location: { hostname, origin: `https://${hostname}`, pathname: '/', href: `https://${hostname}/` },
       document: { referrer: '', head: { append: script => scripts.push(script) }, createElement: () => ({}), addEventListener: (name, callback) => listeners.set(name, callback) },
@@ -51,9 +52,17 @@ test('public counter initializes once and records actual video starts without co
     listeners.get('ended')({ target: video });
     assert.equal(calls.at(-1)[2], 'video_complete');
     listeners.get('portfolio:dialog-open')({ detail: { type: 'project', id: 'exodus-core' } });
-    assert.equal(calls.at(-1)[2], 'project_open');
-    const link = { href: 'https://t.me/vadimburym', classList: { contains: () => false } };
+    assert.equal(calls.at(-1)[2], 'video_complete'); // Direct links/back navigation are not clicks.
+    const link = { href: 'https://t.me/vadimburym', dataset: {}, classList: { contains: () => false } };
     listeners.get('click')({ target: { closest: () => link } });
     assert.equal(calls.at(-1)[2], 'telegram_click');
+    const projectLink = { href: 'https://vadimburym.ru/?project=exodus-core', dataset: { openProject: 'exodus-core' }, classList: { contains: () => false } };
+    listeners.get('click')({ target: { closest: () => projectLink } });
+    assert.equal(calls.at(-1)[2], 'project_open');
+    assert.equal(calls.at(-1)[3].project_id, 'exodus-core');
+    assert.equal(calls.at(-1)[3].project_name, 'Osis Studio / Exodus Core');
+    const cvLink = { href: 'https://vadimburym.ru/assets/documents/vadim-burym-cv.pdf', dataset: {}, classList: { contains: () => false } };
+    listeners.get('click')({ target: { closest: () => cvLink } });
+    assert.equal(calls.at(-1)[2], 'cv_open');
   }
 });

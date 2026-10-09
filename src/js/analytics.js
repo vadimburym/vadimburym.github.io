@@ -1,5 +1,6 @@
 import { site } from './data/site.js?v=20261009-metrica-live';
 import { analyticsEnabled, linkGoal } from './lib/analytics.js?v=20261009-metrica';
+import { projects } from './data/projects.js?v=20261009-mobile-review';
 
 // Independent of the UI module graph. Analytics must never block the portfolio.
 if (analyticsEnabled(site.metricaId, location.hostname)) {
@@ -21,13 +22,15 @@ if (analyticsEnabled(site.metricaId, location.hostname)) {
     if (!link) return;
     const name = linkGoal(link.href, location.origin);
     if (name) goal(name);
+    const project = projects.find(item => item.id === link.dataset.openProject);
+    if (project) goal('project_open', { item: project.id, project_id: project.id, project_name: project.name });
     if (link.classList.contains('project-external-link')) {
       goal('project_link_click', { project: link.closest('.project-dialog')?.dataset.project || '', destination: new URL(link.href).hostname });
     }
   }, true);
 
   document.addEventListener('portfolio:dialog-open', event => {
-    if (['project', 'skill'].includes(event.detail?.type)) {
+    if (event.detail?.type === 'skill') {
       goal(`${event.detail.type}_open`, { item: event.detail.id });
     }
   });
