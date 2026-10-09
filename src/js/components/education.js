@@ -1,7 +1,7 @@
 import { education } from '../data/education.js?v=20261009-mobile-review';
 import { element } from './skill-list.js?v=20261009-mobile-review';
-import { createSkillGallery } from './skill-gallery.js?v=20261009-mobile-review';
-import { mountUrlDialog } from './url-dialog.js?v=20261009-mobile-review';
+import { createSkillGallery } from './skill-gallery.js?v=20261009-gallery-landscape';
+import { mountUrlDialog } from './url-dialog.js?v=20261009-gallery-landscape';
 
 export function mountEducation() {
   const host = document.querySelector('.education-grid');

@@ -90,7 +90,10 @@ export function mountUrlDialog({ parameter, find, render, canonicalId = id => id
     } else if (reopening) {
       animate(dialog, [{ opacity: .6 }, { opacity: 1 }], { duration: 180 });
     }
-    if (changed || !wasOpen) document.dispatchEvent(new CustomEvent('portfolio:dialog-open', { detail: { type: parameter, id } }));
+    if (changed || !wasOpen) {
+      dialog.querySelectorAll('.skill-gallery').forEach(gallery => gallery.dispatchEvent(new Event('gallery-open')));
+      document.dispatchEvent(new CustomEvent('portfolio:dialog-open', { detail: { type: parameter, id } }));
+    }
   }
   function requestClose() {
     if (closing || closeRequested || !dialog.open) return;

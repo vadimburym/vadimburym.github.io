@@ -1,6 +1,7 @@
 import { element } from './skill-list.js?v=20261009-mobile-review';
 import { animate, stopMotion, motionPreference } from '../lib/motion.js?v=20261009-mobile-review';
 import { selectMediaSource } from '../lib/media.js?v=20261009-mobile-review';
+import { preloadGalleryImages } from '../lib/gallery-preload.js?v=20261009-gallery-landscape';
 
 export function createSkillGallery(items, label = 'Галерея навыка') {
   const gallery = element('div', 'skill-gallery');
@@ -34,14 +35,63 @@ export function createSkillGallery(items, label = 'Галерея навыка')
   announcement.setAttribute('aria-live', 'polite');
   const viewer = element('dialog', 'gallery-viewer');
   viewer.setAttribute('aria-label', `${label} — полноэкранный просмотр`);
+  const viewport = element('div', 'gallery-viewer-viewport');
   const toolbar = element('div', 'gallery-viewer-toolbar');
   const caption = element('span', 'gallery-viewer-caption');
   const close = button('gallery-viewer-close', 'Закрыть ×', 'Закрыть полноэкранный просмотр');
   toolbar.append(caption, close);
-  viewer.append(toolbar);
+  viewport.append(toolbar);
+  viewer.append(viewport);
   let current = 0;
   let activeSlide = null;
   let closing = false;
+  let displaySession = 0;
+  let orientationLocked = false;
+  let nativeFullscreen = false;
+  // One image at a time warms the browser cache without downloading gallery videos.
+  let preloadGeneration = 0;
+  async function preloadImages() {
+    const generation = ++preloadGeneration;
+    await preloadGalleryImages(items, item => new Promise(resolve => {
+        const image = new Image();
+        image.onload = image.onerror = resolve;
+        image.src = selectMediaSource(item, phoneDisplay.matches);
+      }), () => generation === preloadGeneration);
+  }
+  const phoneDisplay = matchMedia('(pointer: coarse), (max-width: 640px)');
+  function updateDisplay() {
+    const item = items[current];
+    viewer.classList.toggle('gallery-viewer-image', Boolean(item.src && !/\.(mp4|webm)$/i.test(item.src)));
+  }
+  async function enterFullscreen(session) {
+    if (!matchMedia('(pointer: coarse)').matches || !viewer.classList.contains('gallery-viewer-image') || !viewport.requestFullscreen || document.fullscreenElement) return;
+    try {
+      await viewport.requestFullscreen();
+      if (!viewer.open || session !== displaySession) {
+        if (document.fullscreenElement === viewport) await document.exitFullscreen();
+        return;
+      }
+      nativeFullscreen = true;
+      if (screen.orientation?.lock) {
+        await screen.orientation.lock('landscape');
+        if (!viewer.open || session !== displaySession) screen.orientation.unlock();
+        else orientationLocked = true;
+      }
+    } catch { /* The rotated viewport also works without fullscreen or orientation APIs. */ }
+  }
+  function leaveFullscreen() {
+    displaySession++;
+    document.removeEventListener('fullscreenchange', fullscreenChanged);
+    nativeFullscreen = false;
+    if (orientationLocked) {
+      screen.orientation.unlock();
+      orientationLocked = false;
+    }
+    if (document.fullscreenElement === viewport) document.exitFullscreen().catch(() => {});
+  }
+  function fullscreenChanged() {
+    if (nativeFullscreen && document.fullscreenElement !== viewport) closeViewer(true);
+  }
   function pauseVideo() { stage.querySelectorAll('video').forEach(video => video.pause()); }
   function visual(item, index) {
     const slide = element('div', 'gallery-slide');
@@ -125,9 +175,11 @@ export function createSkillGallery(items, label = 'Галерея навыка')
     stage.setAttribute('aria-label', text);
     if (outgoing) announcement.textContent = text;
     caption.textContent = items[current].alt;
+    updateDisplay();
     buttons.forEach((dot, i) => dot.setAttribute('aria-pressed', String(i === current)));
   }
   function restore() {
+    leaveFullscreen();
     pauseVideo();
     gallery.insertBefore(frame, viewer);
     gallery.insertBefore(dots, viewer);
@@ -145,19 +197,22 @@ export function createSkillGallery(items, label = 'Галерея навыка')
   }
   expand.addEventListener('click', () => {
     pauseVideo();
-    viewer.append(frame, dots);
+    viewport.append(frame, dots);
     expand.hidden = true;
     viewer.showModal();
+    document.addEventListener('fullscreenchange', fullscreenChanged);
+    enterFullscreen(++displaySession);
     close.focus({ preventScroll: true });
     animate(viewer, [{ opacity: 0 }, { opacity: 1 }], { duration: 220 });
   });
   close.addEventListener('click', () => closeViewer());
   viewer.addEventListener('cancel', event => { event.preventDefault(); event.stopPropagation(); closeViewer(); });
-  viewer.addEventListener('close', () => { if (frame.parentElement === viewer) restore(); });
+  viewer.addEventListener('close', () => { if (frame.parentElement === viewport) restore(); });
   // Fullscreen controls must not trigger the parent dialog's outside-click handler.
   viewer.addEventListener('pointerdown', event => event.stopPropagation());
   viewer.addEventListener('click', event => event.stopPropagation());
-  gallery.addEventListener('gallery-close', () => closeViewer(true));
+  gallery.addEventListener('gallery-close', () => { preloadGeneration++; closeViewer(true); });
+  gallery.addEventListener('gallery-open', preloadImages);
   previous.addEventListener('click', () => show(current - 1));
   next.addEventListener('click', () => show(current + 1));
   gallery.addEventListener('keydown', event => {
@@ -177,8 +232,9 @@ export function createSkillGallery(items, label = 'Галерея навыка')
   stage.addEventListener('pointercancel', () => { gesture = null; });
   stage.addEventListener('pointerup', event => {
     if (!gesture || gesture.id !== event.pointerId) return;
-    const dx = event.clientX - gesture.x;
-    const dy = event.clientY - gesture.y;
+    const rotated = viewer.open && viewer.classList.contains('gallery-viewer-image') && phoneDisplay.matches && matchMedia('(orientation: portrait)').matches;
+    const dx = rotated ? event.clientY - gesture.y : event.clientX - gesture.x;
+    const dy = rotated ? gesture.x - event.clientX : event.clientY - gesture.y;
     gesture = null;
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(current + (dx < 0 ? 1 : -1));
   });

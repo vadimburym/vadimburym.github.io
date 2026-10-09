@@ -1,16 +1,16 @@
 import { projects } from './data/projects.js?v=20261009-mobile-review';
 import { validateProjects } from './lib/projects.js?v=20261009-mobile-review';
 import { mountProjects } from './components/project-list.js?v=20261009-mobile-review';
-import { mountProjectDialog } from './components/project-dialog.js?v=20261009-mobile-review';
+import { mountProjectDialog } from './components/project-dialog.js?v=20261009-gallery-landscape';
 import { metaSkills, metaCategories, metaLevels } from './data/meta-skills.js?v=20261009-mobile-review';
 import { coreSkills, coreCategories, coreLevels } from './data/core-skills.js?v=20261009-mobile-review';
 import { validateSkills } from './lib/skills.js?v=20261009-mobile-review';
 import { mountHeader } from './components/site-header.js?v=20261009-mobile-review';
-import { mountSkillDialog } from './components/skill-dialog.js?v=20261009-mobile-review';
+import { mountSkillDialog } from './components/skill-dialog.js?v=20261009-gallery-landscape';
 import { mountFeaturedSkills } from './pages/home.js?v=20261009-mobile-review';
 import { mountSkillCatalog } from './pages/skill-catalog.js?v=20261009-mobile-review';
 import { mountContacts } from './components/contacts.js?v=20261009-mobile-review';
-import { mountEducation } from './components/education.js?v=20261009-mobile-review';
+import { mountEducation } from './components/education.js?v=20261009-gallery-landscape';
 
 const catalogs = [
   { page: 'core-skills', label: 'Core Skills', skills: coreSkills, categories: coreCategories, levels: coreLevels, featuredSelector: '[data-featured-core]', scaleId: 'core-skills-scale', scaleTitle: 'Уровни навыка' },
