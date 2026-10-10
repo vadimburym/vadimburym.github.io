@@ -96,6 +96,7 @@
   document.addEventListener('click', async event => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || reduced.matches) return;
     const link = event.target.closest('a[href]');
+    if (link?.hasAttribute('data-open-project')) return;
     if (!link || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
     const url = new URL(link.href, location.href);
     if (url.origin !== location.origin || !routes.has(url.pathname) || url.pathname === location.pathname) return;

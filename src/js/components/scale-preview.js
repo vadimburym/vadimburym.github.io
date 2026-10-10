@@ -1,4 +1,4 @@
-import { motionPreference } from '../lib/motion.js?v=20261009-mobile-review';
+import { motionPreference } from '../lib/motion.js?v=20261010-readable';
 
 // One timer updates both the segments and their definition; it only runs in view.
 export function mountScalePreview(guide) {

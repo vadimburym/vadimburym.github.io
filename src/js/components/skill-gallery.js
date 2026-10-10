@@ -1,7 +1,7 @@
-import { element } from './skill-list.js?v=20261009-mobile-review';
-import { animate, stopMotion, motionPreference } from '../lib/motion.js?v=20261009-mobile-review';
-import { selectMediaSource } from '../lib/media.js?v=20261009-mobile-review';
-import { preloadGalleryImages } from '../lib/gallery-preload.js?v=20261009-gallery-landscape';
+import { element } from './skill-list.js?v=20261010-readable';
+import { animate, stopMotion, motionPreference } from '../lib/motion.js?v=20261010-readable';
+import { selectMediaSource } from '../lib/media.js?v=20261010-readable';
+import { preloadGalleryImages } from '../lib/gallery-preload.js?v=20261010-readable';
 
 export function createSkillGallery(items, label = 'Галерея навыка') {
   const gallery = element('div', 'skill-gallery');

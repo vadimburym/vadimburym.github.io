@@ -1,4 +1,4 @@
-import { element } from './skill-list.js?v=20261009-mobile-review';
+import { element } from './skill-list.js?v=20261010-readable';
 
 export function createCopyButton(label, getValue, className = 'copy-button') {
   const button = element('button', className, label);

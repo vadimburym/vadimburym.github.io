@@ -1,3 +1,4 @@
+import { renderLevel, renderSkillList } from '../lib/render.js';
 export function element(tag, className, text) {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -5,15 +6,13 @@ export function element(tag, className, text) {
   return node;
 }
 
+export function fromHtml(html) {
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template.content.firstElementChild;
+}
 export function createLevel(level, levels, scaleId) {
-  const bar = element('span', `level level-${levels.length}`);
-  bar.setAttribute('role', 'img');
-  const label = level === null || level === 0 ? 'Уровень пока не указан' : `Уровень ${level} из ${levels.length} — ${levels[level - 1]}`;
-  bar.setAttribute('aria-label', label);
-  if (scaleId) bar.setAttribute('aria-describedby', scaleId);
-  bar.title = label;
-  for (let i = 0; i < levels.length; i++) bar.append(element('i', level !== null && i < level ? 'filled' : ''));
-  return bar;
+  return fromHtml(renderLevel(level, levels, scaleId));
 }
 
 export function createScale(levels, id, { label = 'Core Skills', scaleTitle = 'Уровни навыка', animated = false } = {}) {
@@ -60,43 +59,6 @@ export function createColumnHead() {
   return columns;
 }
 
-export function createSkillList(skills, levels, scaleId, label, { showColumns = true } = {}) {
-  const list = element('div', 'skill-list');
-  list.setAttribute('role', 'list');
-  list.setAttribute('aria-label', label);
-  if (showColumns) list.append(createColumnHead());
-  skills.forEach(skill => {
-    const row = element('div', 'skill');
-    row.dataset.skillId = skill.id;
-    row.setAttribute('role', 'listitem');
-    const name = element('span', `skill-name${skill.icon ? ' has-icon' : ''}`);
-    if (skill.icon) {
-      const icon = element('img', 'skill-icon');
-      icon.src = skill.icon;
-      icon.alt = '';
-      icon.width = icon.height = 20;
-      icon.setAttribute('aria-hidden', 'true');
-      name.append(icon);
-    }
-    name.append(element('span', '', skill.name));
-    const action = element(skill.details ? 'a' : 'button', 'skill-arrow');
-    const arrow = element('span', '', '↗');
-    arrow.setAttribute('aria-hidden', 'true');
-    action.append(arrow);
-    if (skill.details) {
-      const url = new URL(location.href);
-      url.searchParams.set('skill', skill.id);
-      action.href = url.pathname + url.search + url.hash;
-      action.dataset.openSkill = skill.id;
-      action.setAttribute('aria-label', `Подробнее: ${skill.name}`);
-    } else {
-      action.type = 'button';
-      action.disabled = true;
-      action.title = 'Подробного разбора нет';
-      action.setAttribute('aria-label', `${skill.name}: подробного разбора нет`);
-    }
-    row.append(name, createLevel(skill.level, levels, scaleId), element('span', 'skill-desc', skill.bestResult), action);
-    list.append(row);
-  });
-  return list;
+export function createSkillList(skills, levels, scaleId, label, options = {}) {
+  return fromHtml(renderSkillList(skills, levels, scaleId, label, { pathname: location.pathname, ...options }));
 }

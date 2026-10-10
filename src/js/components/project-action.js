@@ -1,4 +1,4 @@
-import { element } from './skill-list.js?v=20261009-mobile-review';
+import { element } from './skill-list.js?v=20261010-readable';
 
 const starRequests = new Map();
 const starCacheDuration = 60 * 60 * 1000;

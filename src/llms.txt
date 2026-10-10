@@ -1,0 +1,9 @@
+# Вадим Бурым — Unity Developer
+
+> Публичное портфолио: игровой ИИ, архитектура, проекты для ПК и Web.
+
+- [Полный текст портфолио](https://vadimburym.ru/portfolio.txt): проекты, личный вклад, навыки, образование и ссылки.
+- [Проекты](https://vadimburym.ru/projects/)
+- [Core Skills](https://vadimburym.ru/skills/)
+- [Meta Skills](https://vadimburym.ru/meta-skills/)
+- [CV](https://vadimburym.ru/assets/documents/vadim-burym-cv.pdf)

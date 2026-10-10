@@ -1,4 +1,4 @@
-import { validGalleryItem } from './media.js?v=20261009-mobile-review';
+import { validGalleryItem } from './media.js?v=20261010-readable';
 export function selectProjects(projects, featured = false) {
   return projects.filter(project => !featured || project.featured)
     .sort((a, b) => featured ? a.featuredOrder - b.featuredOrder : a.order - b.order);

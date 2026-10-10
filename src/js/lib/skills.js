@@ -1,4 +1,4 @@
-import { validGalleryItem } from './media.js?v=20261009-mobile-review';
+import { validGalleryItem } from './media.js?v=20261010-readable';
 export function normalizeQuery(value) {
   return String(value).normalize('NFKC').toLocaleLowerCase('ru').replaceAll('\u0451', 'е').trim().replace(/\s+/g, ' ');
 }

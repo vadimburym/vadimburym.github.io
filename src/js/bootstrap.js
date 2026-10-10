@@ -2,6 +2,15 @@
 (() => {
   const entry = document.currentScript.dataset.entry;
   const status = document.querySelector('[data-load-status]');
+  if (!status) {
+    import(entry).then(() => {
+      document.documentElement.dataset.appState = 'ready';
+    }).catch(error => {
+      console.error('Portfolio startup failed:', error);
+      document.documentElement.dataset.appState = 'error';
+    }).finally(() => document.dispatchEvent(new Event('portfolio:ready')));
+    return;
+  }
   const message = status.querySelector('[data-load-message]');
   const reload = status.querySelector('button');
   reload.addEventListener('click', () => location.reload());

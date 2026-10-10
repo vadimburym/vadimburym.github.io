@@ -1,16 +1,16 @@
-import { projects } from './data/projects.js?v=20261009-mobile-review';
-import { validateProjects } from './lib/projects.js?v=20261009-mobile-review';
-import { mountProjects } from './components/project-list.js?v=20261009-mobile-review';
-import { mountProjectDialog } from './components/project-dialog.js?v=20261009-gallery-quiet';
-import { metaSkills, metaCategories, metaLevels } from './data/meta-skills.js?v=20261009-mobile-review';
-import { coreSkills, coreCategories, coreLevels } from './data/core-skills.js?v=20261009-home-ai-last';
-import { validateSkills } from './lib/skills.js?v=20261009-mobile-review';
-import { mountHeader } from './components/site-header.js?v=20261009-mobile-review';
-import { mountSkillDialog } from './components/skill-dialog.js?v=20261009-gallery-quiet';
-import { mountFeaturedSkills } from './pages/home.js?v=20261009-mobile-review';
-import { mountSkillCatalog } from './pages/skill-catalog.js?v=20261009-mobile-review';
-import { mountContacts } from './components/contacts.js?v=20261009-mobile-review';
-import { mountEducation } from './components/education.js?v=20261009-gallery-quiet';
+import { projects } from './data/projects.js?v=20261010-readable';
+import { validateProjects } from './lib/projects.js?v=20261010-readable';
+import { mountProjects } from './components/project-list.js?v=20261010-readable';
+import { mountProjectDialog } from './components/project-dialog.js?v=20261010-readable';
+import { metaSkills, metaCategories, metaLevels } from './data/meta-skills.js?v=20261010-readable';
+import { coreSkills, coreCategories, coreLevels } from './data/core-skills.js?v=20261010-readable';
+import { validateSkills } from './lib/skills.js?v=20261010-readable';
+import { mountHeader } from './components/site-header.js?v=20261010-readable';
+import { mountSkillDialog } from './components/skill-dialog.js?v=20261010-readable';
+import { mountFeaturedSkills } from './pages/home.js?v=20261010-readable';
+import { mountSkillCatalog } from './pages/skill-catalog.js?v=20261010-readable';
+import { mountContacts } from './components/contacts.js?v=20261010-readable';
+import { mountEducation } from './components/education.js?v=20261010-readable';
 
 const catalogs = [
   { page: 'core-skills', label: 'Core Skills', skills: coreSkills, categories: coreCategories, levels: coreLevels, featuredSelector: '[data-featured-core]', scaleId: 'core-skills-scale', scaleTitle: 'Уровни навыка' },
@@ -37,6 +37,7 @@ try {
 } catch (error) {
   console.error('Portfolio content:', error);
   document.querySelectorAll('[data-featured-core], [data-featured-meta], #skill-results, [data-project-list], [data-featured-projects]').forEach(target => {
+    if (target.dataset.prerendered) return;
     target.textContent = 'Не удалось загрузить содержимое. Попробуйте обновить страницу.';
     target.setAttribute('role', 'alert');
   });

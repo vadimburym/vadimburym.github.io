@@ -1,21 +1,30 @@
-import { element } from './skill-list.js?v=20261009-mobile-review';
-import { animate, stopMotion } from '../lib/motion.js?v=20261009-mobile-review';
-import { createCopyButton } from './copy-button.js?v=20261009-mobile-review';
+import { element } from './skill-list.js?v=20261010-readable';
+import { animate, stopMotion } from '../lib/motion.js?v=20261010-readable';
+import { createCopyButton } from './copy-button.js?v=20261010-readable';
 
-export function mountUrlDialog({ parameter, find, render, canonicalId = id => id }) {
+export function mountUrlDialog({ parameter, find, render, canonicalId = id => id, pathFor, idFromPath, fallbackPath = '/', onChange = () => {} }) {
   const stateKey = `${parameter}Dialog`;
+  const returnPath = idFromPath?.(location.pathname) ? fallbackPath : location.pathname;
+  const staticDocument = document.querySelector(`[data-static-dialog="${parameter}"]`);
   const dialog = element('dialog', `skill-dialog ${parameter}-dialog`);
+  if (staticDocument) {
+    dialog.dataset.staticDialog = parameter;
+    dialog.replaceChildren(...staticDocument.childNodes);
+    staticDocument.replaceWith(dialog);
+  }
+  if (dialog.open) dialog.close();
   dialog.setAttribute('aria-labelledby', `${parameter}-dialog-title`);
   const close = element('button', 'dialog-close', 'Закрыть ×');
   close.type = 'button';
-  const body = element('div', 'dialog-content');
+  const body = dialog.querySelector('.dialog-content') || element('div', 'dialog-content');
   const actions = element('div', 'dialog-actions');
   actions.append(createCopyButton('Копировать ссылку', () => {
+    if (pathFor) return new URL(pathFor(currentId), location.origin).href;
     const url = new URL(location.pathname, location.origin);
     url.searchParams.set(parameter, currentId);
     return url.href;
   }), close);
-  dialog.append(actions, body);
+  dialog.replaceChildren(actions, body);
   document.body.append(dialog);
   let opener = null;
   let currentId = null;
@@ -27,13 +36,14 @@ export function mountUrlDialog({ parameter, find, render, canonicalId = id => id
   function removeParameter() {
     const url = new URL(location.href);
     url.searchParams.delete(parameter);
+    if (idFromPath?.(url.pathname)) url.pathname = returnPath;
     const state = { ...history.state };
     delete state[stateKey];
     history.replaceState(state, '', url);
   }
   async function sync() {
     const request = ++revision;
-    let id = new URL(location.href).searchParams.get(parameter);
+    let id = idFromPath?.(location.pathname) || new URL(location.href).searchParams.get(parameter);
     const item = find(id);
     if (!item) {
       if (id) removeParameter();
@@ -54,12 +64,14 @@ export function mountUrlDialog({ parameter, find, render, canonicalId = id => id
       }
       currentId = null;
       closing = closeRequested = false;
+      onChange(null);
       return;
     }
     const canonical = canonicalId(id, item);
-    if (canonical !== id) {
+    if (canonical !== id || (pathFor && location.pathname !== pathFor(canonical))) {
       const url = new URL(location.href);
-      url.searchParams.set(parameter, canonical);
+      if (pathFor) { url.pathname = pathFor(canonical); url.searchParams.delete(parameter); }
+      else url.searchParams.set(parameter, canonical);
       const state = { ...history.state };
       if (state[stateKey] === id) state[stateKey] = canonical;
       history.replaceState(state, '', url);
@@ -94,6 +106,9 @@ export function mountUrlDialog({ parameter, find, render, canonicalId = id => id
       dialog.querySelectorAll('.skill-gallery').forEach(gallery => gallery.dispatchEvent(new Event('gallery-open')));
       document.dispatchEvent(new CustomEvent('portfolio:dialog-open', { detail: { type: parameter, id } }));
     }
+    dialog.removeAttribute('data-static-dialog');
+    document.querySelector('[data-static-backdrop]')?.remove();
+    onChange(item);
   }
   function requestClose() {
     if (closing || closeRequested || !dialog.open) return;
@@ -108,7 +123,9 @@ export function mountUrlDialog({ parameter, find, render, canonicalId = id => id
     opener = link;
     document.querySelectorAll('dialog[open] video').forEach(video => video.pause());
     const url = new URL(location.href);
-    url.searchParams.set(parameter, link.getAttribute(`data-open-${parameter}`));
+    const nextId = link.getAttribute(`data-open-${parameter}`);
+    if (pathFor) { url.pathname = pathFor(nextId); url.searchParams.delete(parameter); }
+    else url.searchParams.set(parameter, nextId);
     history.pushState({ ...history.state, [stateKey]: link.getAttribute(`data-open-${parameter}`) }, '', url);
     sync();
   });

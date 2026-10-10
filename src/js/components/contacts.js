@@ -1,5 +1,5 @@
-import { site } from '../data/site.js?v=20261009-mobile-review';
-import { createCopyButton } from './copy-button.js?v=20261009-mobile-review';
+import { site } from '../data/site.js?v=20261010-readable';
+import { createCopyButton } from './copy-button.js?v=20261010-readable';
 
 export function mountContacts() {
   document.querySelectorAll('[data-contact]').forEach(control => {
@@ -8,6 +8,10 @@ export function mountContacts() {
     if (!value) return;
     const email = key === 'email';
     if (email ? !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) : !/^https:\/\//i.test(value)) return;
+    if (control.tagName === 'A') {
+      if (email && !control.nextElementSibling?.querySelector('.copy-email')) control.after(createCopyButton('Копировать', () => value, 'copy-email'));
+      return;
+    }
     const link = document.createElement('a');
     link.className = control.className;
     link.href = email ? `mailto:${value}` : value;

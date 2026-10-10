@@ -1,6 +1,6 @@
-import { site } from './data/site.js?v=20261009-metrica-live';
-import { analyticsEnabled, linkGoal } from './lib/analytics.js?v=20261009-metrica';
-import { projects } from './data/projects.js?v=20261009-mobile-review';
+import { site } from './data/site.js?v=20261010-readable';
+import { analyticsEnabled, linkGoal } from './lib/analytics.js?v=20261010-readable';
+import { projects } from './data/projects.js?v=20261010-readable';
 
 // Independent of the UI module graph. Analytics must never block the portfolio.
 if (analyticsEnabled(site.metricaId, location.hostname)) {

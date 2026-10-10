@@ -6,16 +6,17 @@
   <meta name="description" content="Unity-разработчик: игровой ИИ, архитектура, проекты для ПК и Web. Видео, личный вклад и исходный код.">
   <meta name="theme-color" content="#f8f6f0">
   <title>Вадим Бурым — Unity Developer</title>
-  <script src="/js/page-transition.js?v=20261009-mobile-review"></script>
-  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/fonts/onest-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/styles.css?v=20261009-mobile-review">
-  <link rel="stylesheet" href="css/responsive.css?v=20261009-mobile-review">
-  <link rel="stylesheet" href="/css/skill-dialog.css?v=20261009-gallery-quiet">
-  <link rel="stylesheet" href="/css/projects.css?v=20261009-mobile-review">
-  <script defer src="/js/bootstrap.js?v=20261009-mobile-review" data-entry="/js/main.js?v=20261009-home-ai-last"></script>
+  <script src="/js/page-transition.js?v=20261010-readable"></script>
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/onest-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/styles.css?v=20261010-readable">
+  <link rel="stylesheet" href="/css/responsive.css?v=20261010-readable">
+  <link rel="stylesheet" href="/css/skill-dialog.css?v=20261010-readable">
+  <link rel="stylesheet" href="/css/projects.css?v=20261010-readable">
+  <script defer src="/js/bootstrap.js?v=20261010-readable" data-entry="/js/main.js?v=20261010-readable"></script>
 
-<script type="module" src="/js/analytics.js?v=20261009-metrica-goals"></script>
+<script type="module" src="/js/analytics.js?v=20261010-readable"></script>
+
 <!-- sharing:start -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
@@ -34,6 +35,8 @@
 <meta property="og:url" content="https://vadimburym.ru/">
 <link rel="canonical" href="https://vadimburym.ru/">
 <!-- sharing:end -->
+<script type="application/ld+json" data-portfolio-schema>{"@context":"https://schema.org","@type":"ProfilePage","url":"https://vadimburym.ru/","mainEntity":{"@type":"Person","@id":"https://vadimburym.ru/#person","name":"Вадим Бурым","url":"https://vadimburym.ru/","jobTitle":"Unity Developer","email":"vadimburym@yandex.ru","sameAs":["https://github.com/vadimburym","https://t.me/vadimburym"]}}</script>
+<link rel="alternate" type="text/plain" href="/portfolio.txt" title="Полный текст портфолио">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#home">Перейти к содержимому</a>
@@ -41,11 +44,11 @@
 
 <header data-site-header><a class="brand" href="/">Вадим Бурым</a><nav id="main-nav" aria-label="Основная навигация"><a href="/" class="active" aria-current="page">Главная</a><a href="/assets/documents/vadim-burym-cv.pdf" target="_blank" rel="noopener">CV</a><a href="/projects/">Проекты</a><a href="/skills/">Core Skills</a><a href="/meta-skills/">Meta Skills</a></nav><a class="link" href="/#contacts">Связаться ↗</a></header>
 <section class="hero" id="home" aria-labelledby="hero-title">
-  <img class="garden" src="assets/images/hero-cozy-wizard-anime.webp" srcset="assets/images/hero-cozy-wizard-anime-mobile.webp 1000w, assets/images/hero-cozy-wizard-anime.webp 2172w" sizes="100vw" decoding="async" width="2172" height="724" alt="" aria-hidden="true">
+  <img class="garden" src="/assets/images/hero-cozy-wizard-anime.webp" srcset="/assets/images/hero-cozy-wizard-anime-mobile.webp 1000w, /assets/images/hero-cozy-wizard-anime.webp 2172w" sizes="100vw" decoding="async" width="2172" height="724" alt="" aria-hidden="true">
   <div class="hero-copy">
     <div class="eyebrow">ПОРТФОЛИО</div>
     <h1 id="hero-title">Вадим Бурым</h1>
-    <p class="role"><img class="unity-mark" src="assets/images/unity-mark.png" width="89" height="100" alt="" aria-hidden="true"><span class="role-line">Unity Developer <span class="role-experience">| 3 года</span></span></p>
+    <p class="role"><img class="unity-mark" src="/assets/images/unity-mark.png" width="89" height="100" alt="" aria-hidden="true"><span class="role-line">Unity Developer <span class="role-experience">| 3 года</span></span></p>
     <dl class="experience-facts">
       <div class="specialization-fact"><dt>Специализация</dt><dd>Игровой ИИ | Архитектура</dd></div>
       <div><dt>Возраст</dt><dd>24 года</dd></div>
@@ -59,7 +62,7 @@
   </div>
   <div class="hero-visual">
     <figure class="portrait-wrap">
-      <div class="portrait"><img src="assets/images/portrait-vadim.jpg" width="751" height="908" fetchpriority="high" alt="Вадим Бурым"></div>
+      <div class="portrait"><img src="/assets/images/portrait-vadim.jpg" width="751" height="908" fetchpriority="high" alt="Вадим Бурым"></div>
     </figure>
   </div>
 </section>
@@ -68,9 +71,9 @@
 <div class="section-head">
 <h2>Избранные проекты</h2>
 <a class="link catalog-link" href="/projects/"><span>Смотреть все проекты</span><span class="catalog-arrow" aria-hidden="true">↗</span></a></div>
-<div class="load-status" data-load-status role="status"><span data-load-message>Загрузка содержимого…</span> <button type="button" class="link" hidden>Обновить страницу</button></div>
-<div data-featured-projects></div>
-<noscript><p>Для отображения проектов включите JavaScript</p></noscript>
+
+<div data-featured-projects data-prerendered="true"><!-- prerender:projects --><article class="project"><div class="media sage video-cover" data-project="exodus-core"><picture><source media="(max-width: 600px)" srcset="/assets/images/projects/exodus-core/screen01-mobile-review.webp"><img src="/assets/images/projects/exodus-core/screen01-cover-review.webp" alt="" loading="lazy" decoding="async"></picture><button class="cover-play" type="button" aria-label="Смотреть геймплей: Osis Studio / Exodus Core"><span class="cover-play-icon" aria-hidden="true">▶</span><span class="cover-play-label">Смотреть геймплей · 45 сек</span></button></div><div class="project-info"><div class="project-title"><h3>Osis Studio / Exodus Core</h3><span class="eyebrow">Turn-based Tactics / Steam Demo</span></div><div class="eyebrow">Unity Developer · Май 2026 — настоящее время</div><p>Пришел в проект на стадии прототипа: разработал кастомный игровой ИИ на основе Utility AI и интегрировал его в ECS без изменения существующих механик. Создал визуальный редактор и отладчик, сопровождал ИИ в ходе разработки. Разработал AI-агента, чтобы команда могла собирать и настраивать поведение врагов без моего участия. По собственной инициативе брал на себя задачи за рамками основной роли</p><div class="detail"><span class="eyebrow">Unity · C# · LeoEcsProto · Zenject · URP / HLSL · Claude Code</span><a class="link" href="/projects/exodus-core/" data-open-project="exodus-core" aria-label="Подробнее: Osis Studio / Exodus Core">Подробнее ↗</a></div></div></article><article class="project"><div class="media peach video-cover" data-project="dodbt"><picture><source media="(max-width: 600px)" srcset="/assets/images/projects/dodbt/cover-mobile-review.webp"><img src="/assets/images/projects/dodbt/cover.png" alt="" loading="lazy" decoding="async"></picture><button class="cover-play" type="button" aria-label="Смотреть демонстрацию: DODBT"><span class="cover-play-icon" aria-hidden="true">▶</span><span class="cover-play-label">Смотреть демонстрацию · 40 сек</span></button></div><div class="project-info"><div class="project-title"><h3>DODBT</h3><span class="eyebrow">Behaviour Tree / Unity Plugin</span></div><div class="eyebrow">Автор плагина · Q1 2026</div><p>Разработал Behaviour Tree-плагин с ядром исполнения на C#, визуальным редактором, компиляцией графов и отладкой выполнения. Отделил структуру дерева от состояния агентов и обеспечил совместимость с ECS-архитектурой. Создал API пользовательских действий и тесты жизненного цикла узлов</p><div class="detail"><span class="eyebrow">Unity · C# · GraphView · Odin Inspector · NUnit</span><a class="link" href="/projects/dodbt/" data-open-project="dodbt" aria-label="Подробнее: DODBT">Подробнее ↗</a></div></div></article><article class="project"><div class="media lavender video-cover" data-project="half-empty"><picture><source media="(max-width: 600px)" srcset="/assets/images/projects/half-empty/gameplay-poster-1011-2-mobile-review.webp"><img src="/assets/images/projects/half-empty/gameplay-poster-1011-2.webp" alt="" loading="lazy" decoding="async"></picture><button class="cover-play" type="button" aria-label="Смотреть геймплей: Half Empty"><span class="cover-play-icon" aria-hidden="true">▶</span><span class="cover-play-label">Смотреть геймплей · 50 сек</span></button></div><div class="project-info"><div class="project-title"><h3>Half Empty</h3><span class="eyebrow">First-person Rhythm Shooter / Demo</span></div><div class="eyebrow">Team Lead / Unity Developer · Май 2026</div><p>Возглавил команду из четырех человек и разработал архитектуру и все игровые механики ритм-шутера. Интегрировал FMOD и создал инструменты настройки уровней под музыку. Организовал работу в Jira и Bitbucket — вместе выпустили демоверсию с тремя уровнями</p><div class="detail"><span class="eyebrow">Unity · C# · FMOD · Jira · Bitbucket</span><a class="link" href="/projects/half-empty/" data-open-project="half-empty" aria-label="Подробнее: Half Empty">Подробнее ↗</a></div></div></article><!-- /prerender:projects --></div>
+
 </section>
 <section class="skills" id="skills" aria-labelledby="core-skills-title">
   <div class="eyebrow">02 / НАВЫКИ</div>
@@ -85,54 +88,33 @@
       <div class="column-head" aria-hidden="true"><span>НАВЫК</span><span>УРОВЕНЬ</span><span>ЛУЧШИЙ РЕЗУЛЬТАТ</span><span></span></div>
       <div class="featured-skill-group" id="core-skills" role="group" aria-labelledby="featured-core-title">
         <h3 class="featured-category-heading" id="featured-core-title">Core Skills</h3>
-        <div data-featured-core><p class="featured-loading" role="status">Загрузка навыков…</p></div>
+        <div data-featured-core data-prerendered="true"><!-- prerender:core --><div class="skill-list" role="list" aria-label="Core Skills"><div class="skill" data-skill-id="ecs" role="listitem"><span class="skill-name"><span>ECS / Data-Oriented Design</span></span><span class="level level-5" role="img" aria-label="Уровень 4 из 5 — Решаю нетиповые задачи" title="Уровень 4 из 5 — Решаю нетиповые задачи"><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i></i><span class="sr-only">Уровень 4 из 5 — Решаю нетиповые задачи</span></span><span class="skill-desc">Оптимизировал Behaviour Tree для DOTS с Burst и Jobs — сократил время обработки 10 000 агентов с 126,25 до 1,00 мс в Unity Editor.</span><button class="skill-arrow" type="button" disabled title="Подробного разбора нет" aria-label="ECS / Data-Oriented Design: подробного разбора нет"><span aria-hidden="true">↗</span></button></div><div class="skill" data-skill-id="modules" role="listitem"><span class="skill-name"><span>Модульная архитектура</span></span><span class="level level-5" role="img" aria-label="Уровень 4 из 5 — Решаю нетиповые задачи" title="Уровень 4 из 5 — Решаю нетиповые задачи"><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i></i><span class="sr-only">Уровень 4 из 5 — Решаю нетиповые задачи</span></span><span class="skill-desc">Выделил настройки игры в модуль с отдельным UI и перенес в другой проект, избавив команду от повторной разработки.</span><button class="skill-arrow" type="button" disabled title="Подробного разбора нет" aria-label="Модульная архитектура: подробного разбора нет"><span aria-hidden="true">↗</span></button></div><div class="skill" data-skill-id="di" role="listitem"><span class="skill-name"><span>Dependency Injection (DI)</span></span><span class="level level-5" role="img" aria-label="Уровень 4 из 5 — Решаю нетиповые задачи" title="Уровень 4 из 5 — Решаю нетиповые задачи"><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i></i><span class="sr-only">Уровень 4 из 5 — Решаю нетиповые задачи</span></span><span class="skill-desc">Построил на VContainer единый жизненный цикл систем — их запуск, пауза и очистка управляются из одного места. Также работал с Zenject.</span><button class="skill-arrow" type="button" disabled title="Подробного разбора нет" aria-label="Dependency Injection (DI): подробного разбора нет"><span aria-hidden="true">↗</span></button></div><div class="skill" data-skill-id="utility-ai" role="listitem"><span class="skill-name"><span>Utility AI</span></span><span class="level level-5" role="img" aria-label="Уровень 5 из 5 — Обучаю других" title="Уровень 5 из 5 — Обучаю других"><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><span class="sr-only">Уровень 5 из 5 — Обучаю других</span></span><span class="skill-desc">Разработал кастомный ИИ на основе Utility AI для пошаговой тактики на изометрическом поле, объяснил систему команде и разработал AI-агента для ее поддержки</span><button class="skill-arrow" type="button" disabled title="Подробного разбора нет" aria-label="Utility AI: подробного разбора нет"><span aria-hidden="true">↗</span></button></div><div class="skill" data-skill-id="behavior-tree" role="listitem"><span class="skill-name"><span>Behaviour Tree</span></span><span class="level level-5" role="img" aria-label="Уровень 5 из 5 — Обучаю других" title="Уровень 5 из 5 — Обучаю других"><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><span class="sr-only">Уровень 5 из 5 — Обучаю других</span></span><span class="skill-desc">Разработал data-oriented Behaviour Tree с Parallel и прерываниями для DOTS/Burst; объяснял его устройство и выигрыш в докладах на конференциях.</span><button class="skill-arrow" type="button" disabled title="Подробного разбора нет" aria-label="Behaviour Tree: подробного разбора нет"><span aria-hidden="true">↗</span></button></div><div class="skill" data-skill-id="testing" role="listitem"><span class="skill-name"><span>Тесты, NUnit</span></span><span class="level level-5" role="img" aria-label="Уровень 3 из 5 — Применяю самостоятельно" title="Уровень 3 из 5 — Применяю самостоятельно"><i class="filled"></i><i class="filled"></i><i class="filled"></i><i></i><i></i><span class="sr-only">Уровень 3 из 5 — Применяю самостоятельно</span></span><span class="skill-desc">Покрыл Behaviour Tree тестами статусов, прерываний и жизненного цикла leaf-узлов, включая Parallel.</span><button class="skill-arrow" type="button" disabled title="Подробного разбора нет" aria-label="Тесты, NUnit: подробного разбора нет"><span aria-hidden="true">↗</span></button></div><div class="skill" data-skill-id="ai-assisted-development" role="listitem"><span class="skill-name"><span>ИИ в разработке</span></span><span class="level level-5" role="img" aria-label="Уровень 4 из 5 — Решаю нетиповые задачи" title="Уровень 4 из 5 — Решаю нетиповые задачи"><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i></i><span class="sr-only">Уровень 4 из 5 — Решаю нетиповые задачи</span></span><span class="skill-desc">Активно использую Claude Fable и GPT Astra, разрабатываю AI-агентов для ускорения работы и вручную контролирую результат.</span><button class="skill-arrow" type="button" disabled title="Подробного разбора нет" aria-label="ИИ в разработке: подробного разбора нет"><span aria-hidden="true">↗</span></button></div></div><!-- /prerender:core --></div>
       </div>
       <div class="featured-skill-group" id="meta-skills" role="group" aria-labelledby="featured-meta-title">
         <h3 class="featured-category-heading" id="featured-meta-title">Meta Skills</h3>
-        <div data-featured-meta><p class="featured-loading" role="status">Загрузка навыков…</p></div>
+        <div data-featured-meta data-prerendered="true"><!-- prerender:meta --><div class="skill-list" role="list" aria-label="Meta Skills"><div class="skill" data-skill-id="technical-art" role="listitem"><span class="skill-name"><span>Технический арт</span></span><span class="level level-3" role="img" aria-label="Уровень 2 из 3 — Продвинутый" title="Уровень 2 из 3 — Продвинутый"><i class="filled"></i><i class="filled"></i><i></i><span class="sr-only">Уровень 2 из 3 — Продвинутый</span></span><span class="skill-desc">Создал шейдеры и визуальные эффекты Exodus Core и довел окружение до единой стилизации в Unity.</span><button class="skill-arrow" type="button" disabled title="Подробного разбора нет" aria-label="Технический арт: подробного разбора нет"><span aria-hidden="true">↗</span></button></div><div class="skill" data-skill-id="figma" role="listitem"><span class="skill-name has-icon"><img class="skill-icon" src="/assets/images/figma-mark.svg" alt="" width="20" height="20" aria-hidden="true"><span>Figma</span></span><span class="level level-3" role="img" aria-label="Уровень 2 из 3 — Продвинутый" title="Уровень 2 из 3 — Продвинутый"><i class="filled"></i><i class="filled"></i><i></i><span class="sr-only">Уровень 2 из 3 — Продвинутый</span></span><span class="skill-desc">Подготовил UI/UX-макеты и дизайн материалов Kickstarter для Exodus Core.</span><button class="skill-arrow" type="button" disabled title="Подробного разбора нет" aria-label="Figma: подробного разбора нет"><span aria-hidden="true">↗</span></button></div><div class="skill" data-skill-id="photoshop" role="listitem"><span class="skill-name has-icon"><img class="skill-icon" src="/assets/images/photoshop-mark.svg" alt="" width="20" height="20" aria-hidden="true"><span>Adobe Photoshop</span></span><span class="level level-3" role="img" aria-label="Уровень 2 из 3 — Продвинутый" title="Уровень 2 из 3 — Продвинутый"><i class="filled"></i><i class="filled"></i><i></i><span class="sr-only">Уровень 2 из 3 — Продвинутый</span></span><span class="skill-desc">Подготовил Steam-капсулу Exodus Core и редактировал игровые скриншоты; регулярно использую Adobe Photoshop для визуальных задач.</span><button class="skill-arrow" type="button" disabled title="Подробного разбора нет" aria-label="Adobe Photoshop: подробного разбора нет"><span aria-hidden="true">↗</span></button></div></div><!-- /prerender:meta --></div>
       </div>
     </div>
-    <noscript><p>Для отображения навыков включите JavaScript</p></noscript>
+
 </section>
 <section class="education" id="education">
-<img class="education-art" src="assets/images/education-columns-anime.webp" srcset="/assets/images/education-columns-anime-mobile.webp 800w, /assets/images/education-columns-anime.webp 1100w" sizes="(max-width: 640px) 280px, 550px" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true">
+<img class="education-art" src="/assets/images/education-columns-anime.webp" srcset="/assets/images/education-columns-anime-mobile.webp 800w, /assets/images/education-columns-anime.webp 1100w" sizes="(max-width: 640px) 280px, 550px" width="1536" height="1024" loading="lazy" alt="" aria-hidden="true">
 <div class="eyebrow">03 / ОБРАЗОВАНИЕ</div>
 <div class="section-head">
 <h2>Образование</h2></div>
-<div class="education-grid">
-<article class="edu-card">
-<div class="edu-top">
-<div class="edu-logo" role="img" aria-label="Заглушка логотипа учреждения"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-5 9 5H3ZM5 10v9m5-9v9m4-9v9m5-9v9M3 20h18"/></svg></div><span class="dates">ГГГГ — ГГГГ</span></div>
-<h3>Бакалавриат</h3>
-<p>Название университета<br>Направление подготовки</p>
-<button class="link" type="button" data-pending="Для просмотра документа включите JavaScript">Документ ↗</button>
-</article>
-<article class="edu-card">
-<div class="edu-top">
-<div class="edu-logo" role="img" aria-label="Заглушка логотипа учреждения"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-5 9 5H3ZM5 10v9m5-9v9m4-9v9m5-9v9M3 20h18"/></svg></div><span class="dates">ГГГГ — ГГГГ</span></div>
-<h3>Магистратура</h3>
-<p>Название университета<br>Направление подготовки</p>
-<button class="link" type="button" data-pending="Для просмотра документа включите JavaScript">Документ ↗</button>
-</article>
-<article class="edu-card">
-<div class="edu-top">
-<div class="edu-logo" role="img" aria-label="Заглушка логотипа учреждения"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-5 9 5H3ZM5 10v9m5-9v9m4-9v9m5-9v9M3 20h18"/></svg></div><span class="dates">ГГГГ — ГГГГ</span></div>
-<h3>Повышение квалификации</h3>
-<p>Название организации<br>Программа обучения</p>
-<button class="link" type="button" data-pending="Для просмотра документа включите JavaScript">Документ ↗</button>
-</article></div>
+<div class="education-grid" data-prerendered="true"><!-- prerender:education --><article class="edu-card"><div class="edu-top"><div class="edu-logo has-logo"><img src="/assets/images/education/sfedu-logo.webp" alt="Южный Федеральный Университет" width="56" height="56" loading="lazy"></div><span class="dates">2019–2024</span></div><h3>Бакалавриат</h3><p>Южный Федеральный Университет<br>Прикладная математика и информатика</p><a class="link" href="/?education=bachelor" data-open-education="bachelor" aria-label="Документ: Бакалавриат">Документ ↗</a></article><article class="edu-card"><div class="edu-top"><div class="edu-logo has-logo"><img src="/assets/images/education/sfedu-logo.webp" alt="Южный Федеральный Университет" width="56" height="56" loading="lazy"></div><span class="dates">2024–2026</span></div><h3>Магистратура</h3><p>Южный Федеральный Университет<br>Разработка мобильных приложений и компьютерных игр</p><a class="link" href="/?education=master" data-open-education="master" aria-label="Документ: Магистратура">Документ ↗</a></article><article class="edu-card"><div class="edu-top"><div class="edu-logo has-logo"><img src="/assets/images/education/otus-logo.webp" alt="ООО &quot;Отус онлайн-образование&quot;" width="56" height="56" loading="lazy"></div><span class="dates">2025–2026</span></div><h3>Повышение квалификации</h3><p>ООО &quot;Отус онлайн-образование&quot;<br>Unity Game Developer. Professional</p><a class="link" href="/?education=professional-development" data-open-education="professional-development" aria-label="Документ: Повышение квалификации">Документ ↗</a></article><!-- /prerender:education --></div>
 </section>
 <section class="contacts" id="contacts">
-<img class="contacts-art" src="assets/images/contacts-cozy-bridge-anime.webp" srcset="assets/images/contacts-cozy-bridge-anime-mobile.webp 1000w, assets/images/contacts-cozy-bridge-anime.webp 2172w" sizes="100vw" decoding="async" width="2172" height="724" loading="lazy" alt="" aria-hidden="true">
+<img class="contacts-art" src="/assets/images/contacts-cozy-bridge-anime.webp" srcset="/assets/images/contacts-cozy-bridge-anime-mobile.webp 1000w, /assets/images/contacts-cozy-bridge-anime.webp 2172w" sizes="100vw" decoding="async" width="2172" height="724" loading="lazy" alt="" aria-hidden="true">
 <div class="eyebrow">04 / КОНТАКТЫ</div>
 <div class="contacts-row">
 <h2>Контакты</h2>
 <div class="contact-links">
 <h3>
-<button class="email-placeholder" type="button" data-contact="email" data-pending="Контактная почта пока не указана">hello@example.com ↗</button></h3>
+<a class="email-placeholder" data-contact="email" href="mailto:vadimburym@yandex.ru">vadimburym@yandex.ru ↗</a></h3>
 <div class="socials">
-<button class="social-link" type="button" data-contact="github" data-pending="Ссылка на GitHub пока не указана"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.12.68-3.78-1.32-3.78-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.15 1.72 1.15 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.12-1.25-5.12-5.56 0-1.23.44-2.23 1.15-3.02-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.15 1.79 1.15 3.02 0 4.32-2.63 5.28-5.14 5.56.41.35.76 1.03.76 2.08v3.07c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg><span>GitHub</span><span class="social-arrow" aria-hidden="true">↗</span></button>
-<button class="social-link" type="button" data-contact="telegram" data-pending="Ссылка на Telegram пока не указана"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.3 3.4 2.7 10.6c-1.27.5-1.26 1.2-.22 1.52l4.78 1.49 1.82 5.65c.22.62.12.87.77.87.5 0 .72-.23 1-.5l2.33-2.27 4.85 3.58c.89.49 1.53.24 1.75-.82L22.94 4.8c.32-1.28-.5-1.86-1.64-1.4ZM8.01 13.27 18.8 6.46c.54-.33 1.03-.15.62.21l-8.9 8.03-.35 3.69-2.16-5.12Z"/></svg><span>Telegram</span><span class="social-arrow" aria-hidden="true">↗</span></button></div></div></div>
+<a class="social-link" data-contact="github" href="https://github.com/vadimburym" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M12 .8a11.2 11.2 0 0 0-3.54 21.83c.56.1.76-.24.76-.54v-2.1c-3.12.68-3.78-1.32-3.78-1.32-.51-1.29-1.24-1.63-1.24-1.63-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.15 1.72 1.15 1 1.72 2.63 1.22 3.27.93.1-.73.39-1.22.71-1.5-2.5-.28-5.12-1.25-5.12-5.56 0-1.23.44-2.23 1.15-3.02-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.08 1.15a10.7 10.7 0 0 1 5.6 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.7.11 2.98.72.79 1.15 1.79 1.15 3.02 0 4.32-2.63 5.28-5.14 5.56.41.35.76 1.03.76 2.08v3.07c0 .3.2.65.77.54A11.2 11.2 0 0 0 12 .8Z"/></svg><span>GitHub</span><span class="social-arrow" aria-hidden="true">↗</span></a>
+<a class="social-link" data-contact="telegram" href="https://t.me/vadimburym" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M21.3 3.4 2.7 10.6c-1.27.5-1.26 1.2-.22 1.52l4.78 1.49 1.82 5.65c.22.62.12.87.77.87.5 0 .72-.23 1-.5l2.33-2.27 4.85 3.58c.89.49 1.53.24 1.75-.82L22.94 4.8c.32-1.28-.5-1.86-1.64-1.4ZM8.01 13.27 18.8 6.46c.54-.33 1.03-.15.62.21l-8.9 8.03-.35 3.69-2.16-5.12Z"/></svg><span>Telegram</span><span class="social-arrow" aria-hidden="true">↗</span></a></div></div></div>
 <div class="footer"><span>Вадим Бурым / Unity Developer</span><a href="#home">Наверх ↑</a></div>
 </section>
 
