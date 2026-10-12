@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
-import { analyticsEnabled, linkGoal } from '../js/lib/analytics.js';
+import { analyticsEnabled, clarityEnabled, linkGoal } from '../js/lib/analytics.js';
 import { projects } from '../js/data/projects.js';
 
 test('analytics runs only with a real counter on the public domain', () => {
@@ -28,7 +28,7 @@ test('public counter initializes once and records actual video starts without co
   for (const hostname of ['vadimburym.ru', 'localhost']) {
     const calls = [], scripts = [], listeners = new Map();
     const context = {
-      site: { metricaId: 113589005 }, projects, analyticsEnabled, linkGoal, URL, WeakSet, Date,
+      site: { metricaId: 113589005 }, projects, analyticsEnabled, clarityEnabled, linkGoal, URL, WeakSet, Date,
       window: { ym: (...args) => calls.push(args) },
       location: { hostname, origin: `https://${hostname}`, pathname: '/', href: `https://${hostname}/` },
       document: { referrer: '', head: { append: script => scripts.push(script) }, createElement: () => ({}), addEventListener: (name, callback) => listeners.set(name, callback) },
@@ -64,5 +64,35 @@ test('public counter initializes once and records actual video starts without co
     const cvLink = { href: 'https://vadimburym.ru/assets/documents/vadim-burym-cv.pdf', dataset: {}, classList: { contains: () => false } };
     listeners.get('click')({ target: { closest: () => cvLink } });
     assert.equal(calls.at(-1)[2], 'cv_open');
+  }
+});
+
+test('Clarity refuses missing or unsafe IDs and never records local previews', () => {
+  for (const host of ['vadimburym.ru', 'www.vadimburym.ru']) assert.ok(clarityEnabled('ywi5ask2xb', host));
+  for (const host of ['localhost', '127.0.0.1', 'vadimburym.ru.example.com']) assert.equal(clarityEnabled('ywi5ask2xb', host), false);
+  for (const id of [null, '', 'https://other.example', '../project', 12345]) assert.equal(clarityEnabled(id, 'vadimburym.ru'), false);
+});
+
+test('Clarity records CV and named project clicks when Metrica is absent or fails', () => {
+  const code = readFileSync(new URL('../js/analytics.js', import.meta.url), 'utf8').replace(/^import .*;\r?\n/gm, '');
+  for (const metricaId of [null, 113589005]) {
+    const calls = [], scripts = [], listeners = new Map();
+    runInNewContext(code, {
+      site: { metricaId, clarityId: 'ywi5ask2xb' }, projects, analyticsEnabled, clarityEnabled, linkGoal, URL, WeakSet, Date,
+      window: { ym: () => { throw new Error('Provider unavailable'); }, clarity: (...args) => calls.push(args) },
+      location: { hostname: 'vadimburym.ru', origin: 'https://vadimburym.ru', pathname: '/', href: 'https://vadimburym.ru/' },
+      document: { referrer: '', head: { append: script => scripts.push(script) }, createElement: () => ({}), addEventListener: (name, callback) => listeners.set(name, callback) },
+    });
+    assert.ok(scripts.some(script => script.src === 'https://www.clarity.ms/tag/ywi5ask2xb' && script.async));
+    const link = href => ({ href, dataset: {}, classList: { contains: () => false } });
+    listeners.get('click')({ target: { closest: () => link('https://vadimburym.ru/assets/documents/vadim-burym-cv.pdf') } });
+    assert.deepEqual(calls.at(-1), ['event', 'cv_open']);
+    const project = link('https://vadimburym.ru/projects/exodus-core/');
+    project.dataset.openProject = 'exodus-core';
+    listeners.get('click')({ target: { closest: () => project } });
+    assert.deepEqual(calls.slice(-4), [
+      ['event', 'project_open'], ['set', 'project_id', 'exodus-core'],
+      ['set', 'project_name', 'Osis Studio / Exodus Core'], ['event', 'project_open_exodus-core'],
+    ]);
   }
 });

@@ -1,6 +1,12 @@
+const publicHosts = new Set(['vadimburym.ru', 'www.vadimburym.ru']);
+
 export function analyticsEnabled(counterId, hostname) {
-  return Number.isSafeInteger(counterId) && counterId > 0
-    && ['vadimburym.ru', 'www.vadimburym.ru'].includes(hostname);
+  return Number.isSafeInteger(counterId) && counterId > 0 && publicHosts.has(hostname);
+}
+
+export function clarityEnabled(projectId, hostname) {
+  return typeof projectId === 'string' && /^[a-z0-9]{6,32}$/.test(projectId)
+    && publicHosts.has(hostname);
 }
 
 export function linkGoal(href, origin) {

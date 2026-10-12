@@ -5,4 +5,6 @@ export const site = {
   github: 'https://github.com/vadimburym',
   telegram: 'https://t.me/vadimburym',
   metricaId: 113589005,
+  // Public Clarity project ID from Settings > Setup > Install manually.
+  clarityId: 'ywi5ask2xb',
 };

@@ -1,21 +1,48 @@
-import { site } from './data/site.js?v=20261010-readable';
-import { analyticsEnabled, linkGoal } from './lib/analytics.js?v=20261010-readable';
+import { site } from './data/site.js?v=20261012-clarity';
+import { analyticsEnabled, clarityEnabled, linkGoal } from './lib/analytics.js?v=20261012-clarity';
 import { projects } from './data/projects.js?v=20261010-readable';
 
 // Independent of the UI module graph. Analytics must never block the portfolio.
-if (analyticsEnabled(site.metricaId, location.hostname)) {
-  const id = site.metricaId;
-  window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
-  window.ym.l = Date.now();
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = `https://mc.yandex.ru/metrika/tag.js?id=${id}`;
-  document.head.append(script);
-  window.ym(id, 'init', { ssr: true, clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true, referrer: document.referrer, url: location.href });
+const useMetrica = analyticsEnabled(site.metricaId, location.hostname);
+const useClarity = clarityEnabled(site.clarityId, location.hostname);
 
+if (useMetrica) {
+  try {
+    const id = site.metricaId;
+    window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
+    window.ym.l = Date.now();
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://mc.yandex.ru/metrika/tag.js?id=${id}`;
+    document.head.append(script);
+    window.ym(id, 'init', { ssr: true, clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true, referrer: document.referrer, url: location.href });
+  } catch { /* Clarity still starts if Metrica initialization fails. */ }
+}
+
+if (useClarity) {
+  try {
+    window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = `https://www.clarity.ms/tag/${site.clarityId}`;
+    document.head.append(script);
+  } catch { /* Analytics never interrupts the UI or the other provider. */ }
+}
+
+if (useMetrica || useClarity) {
   function goal(name, params = {}) {
-    try { window.ym(id, 'reachGoal', name, { page: location.pathname, ...params }); }
+    try { if (useMetrica) window.ym(site.metricaId, 'reachGoal', name, { page: location.pathname, ...params }); }
     catch { /* Blocking analytics must not affect interactions or navigation. */ }
+    try {
+      if (useClarity) {
+        window.clarity('event', name);
+        if (params.project_id) {
+          window.clarity('set', 'project_id', params.project_id);
+          window.clarity('set', 'project_name', params.project_name);
+          window.clarity('event', `project_open_${params.project_id}`);
+        }
+      }
+    } catch { /* Providers are independent; failure in one must not block the other. */ }
   }
   document.addEventListener('click', event => {
     const link = event.target.closest?.('a[href]');
