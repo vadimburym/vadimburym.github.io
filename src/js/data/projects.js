@@ -114,7 +114,7 @@ export const projects = [
     "coverVideo": {
       "src": "/assets/videos/dodbt/reddit-demo-web.mp4",
       "duration": 49,
-      "label": "Смотреть демонстрацию",
+      "label": "Смотреть трейлер",
       "mobileSrc": "/assets/videos/dodbt/reddit-demo-mobile.mp4"
     },
     "tone": "peach",
