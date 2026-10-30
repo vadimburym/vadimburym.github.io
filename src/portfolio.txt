@@ -60,6 +60,7 @@ Behaviour Tree-плагин для Unity, построенный на принц
 - Создал типизированный API действий и контекста вместо Blackboard — зависимости передаются явно или через DI, а поведение интегрируется с ECS
 - Покрыл выполнение и прерывание узлов тестами — изменения логики можно проверять автоматически
 GitHub: https://github.com/vadimburym/DODBT
+Обзор DODBT: создание деревьев поведения и работа плагина: https://vadimburym.ru/assets/videos/dodbt/reddit-demo-web.mp4
 Демонстрация визуального редактора и отладки DODBT: https://vadimburym.ru/assets/videos/dodbt/demo-1010-web.mp4
 Визуальный редактор DODBT: дерево поведения, настройки узлов и журнал компиляции: https://vadimburym.ru/assets/images/projects/dodbt/graph-editor.png
 Отладка DODBT во время игры: активные ветви и статусы узлов рядом с тестовой сценой: https://vadimburym.ru/assets/images/projects/dodbt/debug-gallery-review.webp

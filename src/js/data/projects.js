@@ -112,16 +112,23 @@ export const projects = [
     "summary": "Разработал Behaviour Tree-плагин с ядром исполнения на C#, визуальным редактором, компиляцией графов и отладкой выполнения. Отделил структуру дерева от состояния агентов и обеспечил совместимость с ECS-архитектурой. Создал API пользовательских действий и тесты жизненного цикла узлов",
     "cover": "/assets/images/projects/dodbt/cover.png",
     "coverVideo": {
-      "src": "/assets/videos/dodbt/demo-1010-web.mp4",
-      "duration": 40,
+      "src": "/assets/videos/dodbt/reddit-demo-web.mp4",
+      "duration": 49,
       "label": "Смотреть демонстрацию",
-      "mobileSrc": "/assets/videos/dodbt/demo-1010-mobile.mp4"
+      "mobileSrc": "/assets/videos/dodbt/reddit-demo-mobile.mp4"
     },
     "tone": "peach",
     "details": {
       "description": "Behaviour Tree-плагин для Unity, построенный на принципах Data-Oriented Design. Ядро исполнения на C# отделено от визуального редактора и жизненного цикла MonoBehaviour. Создавал инструмент для настройки, исполнения и отладки поведения с интеграцией в ECS-архитектуру",
       "responsibility": "Проектирование архитектуры и API, реализация runtime, визуального редактора, компилятора графов, отладчика и тестов. Подготовка Unity-пакета и документации",
       "gallery": [
+        {
+          "src": "/assets/videos/dodbt/reddit-demo-web.mp4",
+          "mobileSrc": "/assets/videos/dodbt/reddit-demo-mobile.mp4",
+          "poster": "/assets/images/projects/dodbt/cover.png",
+          "duration": 49,
+          "alt": "Обзор DODBT: создание деревьев поведения и работа плагина"
+        },
         {
           "src": "/assets/videos/dodbt/demo-1010-web.mp4",
           "poster": "/assets/images/projects/dodbt/cover.png",

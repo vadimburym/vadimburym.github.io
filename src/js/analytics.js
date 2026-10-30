@@ -1,6 +1,6 @@
 import { site } from './data/site.js?v=20261012-clarity';
 import { analyticsEnabled, clarityEnabled, linkGoal } from './lib/analytics.js?v=20261012-clarity';
-import { projects } from './data/projects.js?v=20261010-readable';
+import { projects } from './data/projects.js?v=20261030-dodbt-video';
 
 // Independent of the UI module graph. Analytics must never block the portfolio.
 const useMetrica = analyticsEnabled(site.metricaId, location.hostname);

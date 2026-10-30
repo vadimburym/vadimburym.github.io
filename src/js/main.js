@@ -1,4 +1,4 @@
-import { projects } from './data/projects.js?v=20261010-readable';
+import { projects } from './data/projects.js?v=20261030-dodbt-video';
 import { validateProjects } from './lib/projects.js?v=20261010-readable';
 import { mountProjects } from './components/project-list.js?v=20261010-readable';
 import { mountProjectDialog } from './components/project-dialog.js?v=20261010-readable';
