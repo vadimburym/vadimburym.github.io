@@ -113,7 +113,7 @@ export const projects = [
     "cover": "/assets/images/projects/dodbt/cover.png",
     "coverVideo": {
       "src": "/assets/videos/dodbt/reddit-demo-web.mp4",
-      "duration": 49,
+      "duration": 50,
       "label": "Смотреть трейлер",
       "mobileSrc": "/assets/videos/dodbt/reddit-demo-mobile.mp4"
     },
@@ -126,7 +126,7 @@ export const projects = [
           "src": "/assets/videos/dodbt/reddit-demo-web.mp4",
           "mobileSrc": "/assets/videos/dodbt/reddit-demo-mobile.mp4",
           "poster": "/assets/images/projects/dodbt/cover.png",
-          "duration": 49,
+          "duration": 50,
           "alt": "Обзор DODBT: создание деревьев поведения и работа плагина"
         },
         {
