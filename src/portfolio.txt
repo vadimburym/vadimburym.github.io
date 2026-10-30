@@ -43,7 +43,7 @@ Steam: https://store.steampowered.com/app/3692020/Exodus_Core/
 
 DODBT
 https://vadimburym.ru/projects/dodbt/
-Автор плагина | Q1 2026
+Автор плагина | 2026
 Behaviour Tree | Unity Plugin
 Технологии: Unity, C#, GraphView, Odin Inspector, NUnit
 Разработал Behaviour Tree-плагин с ядром исполнения на C#, визуальным редактором, компиляцией графов и отладкой выполнения. Отделил структуру дерева от состояния агентов и обеспечил совместимость с ECS-архитектурой. Создал API пользовательских действий и тесты жизненного цикла узлов

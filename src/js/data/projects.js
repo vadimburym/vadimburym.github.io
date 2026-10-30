@@ -100,7 +100,7 @@ export const projects = [
     "featuredOrder": 2,
     "genre": "Behaviour Tree",
     "platform": "Unity Plugin",
-    "date": "Q1 2026",
+    "date": "2026",
     "role": "Автор плагина",
     "technologies": [
       "Unity",
