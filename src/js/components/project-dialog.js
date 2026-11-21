@@ -1,5 +1,5 @@
 import { createSkillGallery } from './skill-gallery.js?v=20261010-readable';
-import { mountUrlDialog } from './url-dialog.js?v=20261010-readable';
+import { mountUrlDialog } from './url-dialog.js?v=20261121-lang';
 import { createProjectAction } from './project-action.js?v=20261010-readable';
 import { renderProjectDetails, projectPath, projectIdFromPath } from '../lib/render.js';
 import { site } from '../data/site.js';

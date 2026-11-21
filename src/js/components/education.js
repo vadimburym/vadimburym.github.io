@@ -1,8 +1,8 @@
 import { renderEducation } from '../lib/render.js';
-import { education } from '../data/education.js?v=20261010-readable';
+import { education } from '../data/education.js?v=20261121-lang';
 import { element } from './skill-list.js?v=20261010-readable';
 import { createSkillGallery } from './skill-gallery.js?v=20261010-readable';
-import { mountUrlDialog } from './url-dialog.js?v=20261010-readable';
+import { mountUrlDialog } from './url-dialog.js?v=20261121-lang';
 
 export function mountEducation() {
   const host = document.querySelector('.education-grid');

@@ -3,6 +3,7 @@ import { readFile, writeFile, stat, mkdir, copyFile, rm } from 'node:fs/promises
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site } from '../src/js/data/site.js';
+import { addEnglish } from './english.mjs';
 import { prerender, publicText } from './prerender.mjs';
 import { projects } from '../src/js/data/projects.js';
 import { projectPath } from '../src/js/lib/render.js';
@@ -12,7 +13,8 @@ const output = path.resolve(root, '../output/site-release');
 const generated = await prerender(root);
 generated.set('portfolio.txt', publicText());
 generated.set('llms.txt', `# Вадим Бурым — Unity Developer\n\n> Публичное портфолио: игровой ИИ, архитектура, проекты для ПК и Web.\n\n- [Полный текст портфолио](${site.url}/portfolio.txt): проекты, личный вклад, навыки, образование и ссылки.\n- [Проекты](${site.url}/projects/)\n- [Core Skills](${site.url}/skills/)\n- [Meta Skills](${site.url}/meta-skills/)\n- [CV](${site.url}/assets/documents/vadim-burym-cv.pdf)\n`);
-const queue = [...generated.keys(), 'cv/index.html'];
+await addEnglish(generated, root);
+const queue = [...generated.keys(), 'assets/images/social-preview.png', 'assets/images/social-preview-en.png'];
 const seen = new Set(), files = [], external = new Set(), missing = [];
 function add(ref, parent) {
   if (/^https?:\/\//.test(ref)) { external.add(ref); return; }
@@ -55,7 +57,7 @@ if (site.url) {
   const origin = new URL(site.url).origin;
   await writeFile(path.join(output, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
   const routes = ['', 'projects/', 'skills/', 'meta-skills/', ...projects.map(p=>projectPath(p.id).slice(1))];
-  await writeFile(path.join(output, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + routes.map(route => `<url><loc>${origin}/${route}</loc></url>`).join('') + '</urlset>');
+  await writeFile(path.join(output, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + [...routes, ...routes.map(route => 'en/' + route)].map(route => `<url><loc>${origin}/${route}</loc></url>`).join('') + '</urlset>');
 }
 const report = { files, totalBytes: files.reduce((sum, f) => sum + f.bytes, 0), external: [...external].sort(), missing };
 await mkdir(path.resolve(root, '../output/mobile-review'), { recursive: true });

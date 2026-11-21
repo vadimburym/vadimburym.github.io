@@ -1,0 +1,147 @@
+import { languageSwitch, otherLanguageUrl } from '/js/lib/language.js';
+import { element } from './skill-list.js?v=20261010-readable';
+import { animate, stopMotion } from '../lib/motion.js?v=20261010-readable';
+import { createCopyButton } from './copy-button.js?v=20261010-readable';
+
+export function mountUrlDialog({ parameter, find, render, canonicalId = id => id, pathFor, idFromPath, fallbackPath = '/en/', onChange = () => {} }) {
+  const stateKey = `${parameter}Dialog`;
+  const returnPath = idFromPath?.(location.pathname) ? fallbackPath : location.pathname;
+  const staticDocument = document.querySelector(`[data-static-dialog="${parameter}"]`);
+  const dialog = element('dialog', `skill-dialog ${parameter}-dialog`);
+  if (staticDocument) {
+    dialog.dataset.staticDialog = parameter;
+    dialog.replaceChildren(...staticDocument.childNodes);
+    staticDocument.replaceWith(dialog);
+  }
+  if (dialog.open) dialog.close();
+  dialog.setAttribute('aria-labelledby', `${parameter}-dialog-title`);
+  const close = element('button', 'dialog-close', 'Close ×');
+  close.type = 'button';
+  const body = dialog.querySelector('.dialog-content') || element('div', 'dialog-content');
+  const actions = element('div', 'dialog-actions');
+  actions.insertAdjacentHTML('afterbegin', languageSwitch(location.pathname));
+  const language = actions.firstElementChild;
+  actions.append(createCopyButton('Copy link', () => {
+    if (pathFor) return new URL(pathFor(currentId), location.origin).href;
+    const url = new URL(location.pathname, location.origin);
+    url.searchParams.set(parameter, currentId);
+    return url.href;
+  }), close);
+  dialog.replaceChildren(actions, body);
+  document.body.append(dialog);
+  let opener = null;
+  let currentId = null;
+  let outsideDown = false;
+  let revision = 0;
+  let closing = false;
+  let closeRequested = false;
+
+  function removeParameter() {
+    const url = new URL(location.href);
+    url.searchParams.delete(parameter);
+    if (idFromPath?.(url.pathname)) url.pathname = returnPath;
+    const state = { ...history.state };
+    delete state[stateKey];
+    history.replaceState(state, '', url);
+  }
+  async function sync() {
+    const request = ++revision;
+    let id = idFromPath?.(location.pathname) || new URL(location.href).searchParams.get(parameter);
+    const item = find(id);
+    if (!item) {
+      if (id) removeParameter();
+      if (dialog.open) {
+        dialog.querySelectorAll('.skill-gallery').forEach(gallery => gallery.dispatchEvent(new Event('gallery-close')));
+        closing = true;
+        dialog.querySelectorAll('video').forEach(video => video.pause());
+        const from = getComputedStyle(dialog);
+        const first = { opacity: from.opacity, transform: from.transform };
+        dialog.classList.add('is-closing');
+        await animate(dialog, [first, { opacity: 0, transform: 'translateY(8px) scale(.99)' }], { duration: 190, easing: 'cubic-bezier(.4, 0, 1, 1)' });
+        if (request !== revision) return;
+        dialog.close();
+        dialog.classList.remove('is-closing');
+        if (!document.querySelector('dialog[open]')) document.documentElement.classList.remove('dialog-open');
+        const fallback = document.querySelector('dialog[open] .dialog-close') || document.querySelector('#skill-search') || document.querySelector('#content') || document.querySelector('#home');
+        (opener?.isConnected && !opener.closest('dialog:not([open])') ? opener : fallback)?.focus({ preventScroll: true });
+      }
+      currentId = null;
+      closing = closeRequested = false;
+      onChange(null);
+      return;
+    }
+    const canonical = canonicalId(id, item);
+    if (canonical !== id || (pathFor && location.pathname !== pathFor(canonical))) {
+      const url = new URL(location.href);
+      if (pathFor) { url.pathname = pathFor(canonical); url.searchParams.delete(parameter); }
+      else url.searchParams.set(parameter, canonical);
+      const state = { ...history.state };
+      if (state[stateKey] === id) state[stateKey] = canonical;
+      history.replaceState(state, '', url);
+      id = canonical;
+    }
+    language.href = otherLanguageUrl(location.pathname, location.search, location.hash);
+    const reopening = closing;
+    closing = closeRequested = false;
+    dialog.classList.remove('is-closing');
+    if (reopening) stopMotion(dialog);
+    const changed = currentId !== id;
+    const wasOpen = dialog.open;
+    if (changed) {
+      dialog.querySelectorAll('.skill-gallery').forEach(gallery => gallery.dispatchEvent(new Event('gallery-close')));
+      render(item, body);
+      currentId = id;
+      dialog.dataset[parameter] = id;
+    }
+    if (!dialog.open) {
+      document.querySelectorAll('video').forEach(video => video.pause());
+      document.documentElement.classList.add('dialog-open');
+      dialog.showModal();
+      dialog.scrollTop = 0;
+      close.focus({ preventScroll: true });
+      animate(dialog, [
+        { opacity: 0, transform: 'translateY(16px) scale(.985)' },
+        { opacity: 1, transform: 'translateY(0) scale(1)' },
+      ], { duration: 300 });
+    } else if (reopening) {
+      animate(dialog, [{ opacity: .6 }, { opacity: 1 }], { duration: 180 });
+    }
+    if (changed || !wasOpen) {
+      dialog.querySelectorAll('.skill-gallery').forEach(gallery => gallery.dispatchEvent(new Event('gallery-open')));
+      document.dispatchEvent(new CustomEvent('portfolio:dialog-open', { detail: { type: parameter, id } }));
+    }
+    dialog.removeAttribute('data-static-dialog');
+    document.querySelector('[data-static-backdrop]')?.remove();
+    onChange(item);
+  }
+  function requestClose() {
+    if (closing || closeRequested || !dialog.open) return;
+    closeRequested = true;
+    if (history.state?.[stateKey] === currentId) history.back();
+    else { removeParameter(); sync(); }
+  }
+  document.addEventListener('click', event => {
+    const link = event.target.closest(`[data-open-${parameter}]`);
+    if (!link || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    opener = link;
+    document.querySelectorAll('dialog[open] video').forEach(video => video.pause());
+    const url = new URL(location.href);
+    const nextId = link.getAttribute(`data-open-${parameter}`);
+    if (pathFor) { url.pathname = pathFor(nextId); url.searchParams.delete(parameter); }
+    else url.searchParams.set(parameter, nextId);
+    history.pushState({ ...history.state, [stateKey]: link.getAttribute(`data-open-${parameter}`) }, '', url);
+    sync();
+  });
+  close.addEventListener('click', requestClose);
+  dialog.addEventListener('close', () => dialog.querySelectorAll('video').forEach(video => video.pause()));
+  dialog.addEventListener('cancel', event => { if (event.target !== dialog) return; event.preventDefault(); requestClose(); });
+  function outside(event) {
+    const box = dialog.getBoundingClientRect();
+    return event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom;
+  }
+  dialog.addEventListener('pointerdown', event => { outsideDown = outside(event); });
+  dialog.addEventListener('click', event => { if (outsideDown && outside(event)) requestClose(); outsideDown = false; });
+  window.addEventListener('popstate', sync);
+  sync();
+}

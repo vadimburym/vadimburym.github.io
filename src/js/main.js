@@ -1,16 +1,16 @@
 import { projects } from './data/projects.js?v=20261030-dodbt-video';
 import { validateProjects } from './lib/projects.js?v=20261010-readable';
 import { mountProjects } from './components/project-list.js?v=20261010-readable';
-import { mountProjectDialog } from './components/project-dialog.js?v=20261010-readable';
+import { mountProjectDialog } from './components/project-dialog.js?v=20261121-lang';
 import { metaSkills, metaCategories, metaLevels } from './data/meta-skills.js?v=20261010-readable';
 import { coreSkills, coreCategories, coreLevels } from './data/core-skills.js?v=20261010-readable';
 import { validateSkills } from './lib/skills.js?v=20261010-readable';
-import { mountHeader } from './components/site-header.js?v=20261010-readable';
-import { mountSkillDialog } from './components/skill-dialog.js?v=20261010-readable';
+import { mountHeader } from './components/site-header.js?v=20261121-lang';
+import { mountSkillDialog } from './components/skill-dialog.js?v=20261121-lang';
 import { mountFeaturedSkills } from './pages/home.js?v=20261010-readable';
 import { mountSkillCatalog } from './pages/skill-catalog.js?v=20261010-readable';
 import { mountContacts } from './components/contacts.js?v=20261010-readable';
-import { mountEducation } from './components/education.js?v=20261010-readable';
+import { mountEducation } from './components/education.js?v=20261121-lang';
 
 const catalogs = [
   { page: 'core-skills', label: 'Core Skills', skills: coreSkills, categories: coreCategories, levels: coreLevels, featuredSelector: '[data-featured-core]', scaleId: 'core-skills-scale', scaleTitle: 'Уровни навыка' },
@@ -61,4 +61,3 @@ document.addEventListener('click', event => {
   notice.hidden = false;
   noticeTimeout = window.setTimeout(() => { notice.hidden = true; }, 4500);
 });
-

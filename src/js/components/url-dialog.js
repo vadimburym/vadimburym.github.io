@@ -1,3 +1,4 @@
+import { languageSwitch, otherLanguageUrl } from '/js/lib/language.js';
 import { element } from './skill-list.js?v=20261010-readable';
 import { animate, stopMotion } from '../lib/motion.js?v=20261010-readable';
 import { createCopyButton } from './copy-button.js?v=20261010-readable';
@@ -18,6 +19,8 @@ export function mountUrlDialog({ parameter, find, render, canonicalId = id => id
   close.type = 'button';
   const body = dialog.querySelector('.dialog-content') || element('div', 'dialog-content');
   const actions = element('div', 'dialog-actions');
+  actions.insertAdjacentHTML('afterbegin', languageSwitch(location.pathname));
+  const language = actions.firstElementChild;
   actions.append(createCopyButton('Копировать ссылку', () => {
     if (pathFor) return new URL(pathFor(currentId), location.origin).href;
     const url = new URL(location.pathname, location.origin);
@@ -77,6 +80,7 @@ export function mountUrlDialog({ parameter, find, render, canonicalId = id => id
       history.replaceState(state, '', url);
       id = canonical;
     }
+    language.href = otherLanguageUrl(location.pathname, location.search, location.hash);
     const reopening = closing;
     closing = closeRequested = false;
     dialog.classList.remove('is-closing');

@@ -1,0 +1,6 @@
+// Education and supporting documents; shared by cards and detail dialogs.
+export const education = [
+  { id: 'bachelor', name: 'Bachelor’s degree', institution: 'Southern Federal University', logo: '/assets/images/education/sfedu-logo.webp', program: 'Applied Mathematics and Computer Science', date: '2019–2024', description: '', gallery: [{ src: '/assets/images/education/bachelor-diploma.webp', alt: 'Bachelor’s diploma — Vadim Burym' }] },
+  { id: 'master', name: 'Master’s degree', institution: 'Southern Federal University', logo: '/assets/images/education/sfedu-logo.webp', program: 'Fundamental Computer Science and Information Technology', programName: 'Mobile Application and Computer Game Development', date: '2024–2026', description: '', gallery: [{ src: '/assets/images/education/master-diploma.webp', alt: 'Master’s diploma — Vadim Burym' }] },
+  { id: 'professional-development', name: 'Professional development', institution: 'Otus Online Education LLC', logo: '/assets/images/education/otus-logo.webp', program: 'Unity Game Developer. Professional', date: '2025–2026', description: '', gallery: [{ src: '/assets/images/education/professional-development.webp', alt: 'Professional development certificate — Unity Game Developer. Professional' }] },
+];

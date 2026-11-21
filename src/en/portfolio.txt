@@ -1,0 +1,284 @@
+Vadim Burym — Unity Developer
+Specialization: Game AI, Architecture
+Portfolio: https://vadimburym.ru/en/
+CV: https://vadimburym.ru/assets/documents/vadim-burym-cv-en.pdf
+Email: vadimburym@yandex.ru
+Telegram: https://t.me/vadimburym
+GitHub: https://github.com/vadimburym
+
+PROJECTS
+
+Osis Studio / Exodus Core
+https://vadimburym.ru/en/projects/exodus-core/
+Unity Developer | May 2026 – present
+Turn-based Tactics | Steam Demo
+Technologies: Unity, C#, LeoEcsProto, Zenject, URP / HLSL, Claude Code
+Joined at the prototype stage, built custom game AI based on Utility AI and integrated it into ECS without changing existing mechanics. Created a visual editor and debugger and maintained the AI during development. Built an AI agent so the team could create and tune enemy behavior without my help. Also took on tasks outside my main role on my own initiative
+
+A turn-based tactics game with roguelike elements, inspired by Into the Breach and Darkest Dungeon. I joined an existing prototype and worked in a core team of two alongside a Senior Unity Developer, with occasional outsourcing.
+
+My main responsibility was game AI, from design and integration with existing code to tools for tuning, debugging and maintenance during development. I built an AI agent to create and tune enemy behavior so the team could continue this work without me.
+
+I also took on tasks outside my main role on my own initiative, including environment styling, shaders and effects, UI/UX and design in Figma.
+My responsibility: Game AI · AI agents · Technical art · UI/UX
+Achievements:
+- Joined at the prototype stage and built custom game AI with Utility AI and Consideration Trees so enemies can compare actions, targets and positions on the board
+- Integrated an independent AI module into the existing code with a Bridge and DI, connecting decisions to ECS execution without reworking the game mechanics
+- Created a visual behavior editor so the game designer could build and tune AI in the Unity Editor
+- Built a visual decision debugger so the team could see how each factor affected an enemy’s choice and adjust individual weights during polish
+- Wrote AI tests so calculations, action selection and execution in ECS can be checked automatically after changes
+- Maintained the AI during development, improved behavior and tools, and helped tune weights during polish
+- Built an AI agent for creating and tuning enemy behavior so the team could maintain and extend AI configurations without my help
+- Created a custom fog shader that added to the atmosphere of the locations and matched the game’s visual style
+- Built all game biomes and locations, from preparing terrain and texture maps in Gaea to arranging and styling the environments in Unity
+- Built an AI agent to make location prototypes for manual refinement, speeding up environment preparation
+- Developed the concept and design for the project’s Kickstarter page. The campaign did not launch for legal reasons
+Steam: https://store.steampowered.com/app/3692020/Exodus_Core/
+Exodus Core gameplay: https://vadimburym.ru/assets/videos/exodus-core/gameplay-1008-web.mp4
+Debugging game AI decisions in Exodus Core: https://vadimburym.ru/assets/videos/exodus-core/ai-debug-1009-web.mp4
+Exodus Core screenshot: https://vadimburym.ru/assets/images/projects/exodus-core/screen01-gallery-review.webp
+Kickstarter page design for Exodus Core: https://vadimburym.ru/assets/images/projects/exodus-core/kickstarter-gallery-review.webp
+Creating terrain for Exodus Core in Gaea: https://vadimburym.ru/assets/images/projects/exodus-core/gaea-gallery-review.webp
+Visual AI debugging in Exodus Core: candidate actions, position scores and the contribution of each criterion: https://vadimburym.ru/assets/images/projects/exodus-core/ai-debug-gallery-review.webp
+
+DODBT
+https://vadimburym.ru/en/projects/dodbt/
+Plugin author | 2026
+Behaviour Tree | Unity Plugin
+Technologies: Unity, C#, GraphView, Odin Inspector, NUnit
+Built a Behaviour Tree plugin with a C# runtime, a visual editor, graph compilation and runtime debugging. Separated tree structure from agent state and made the plugin compatible with ECS. Created an API for custom actions and tests for node lifecycles
+
+A Unity Behaviour Tree plugin based on Data-Oriented Design. The C# runtime is separate from the visual editor and the MonoBehaviour lifecycle. I built the tool to configure, run and debug behavior with ECS integration
+My responsibility: Architecture and API design, implementation of the runtime, visual editor, graph compiler, debugger and tests. Unity package and documentation
+Achievements:
+- Separated the C# runtime from MonoBehaviour so the developer controls how often behavior is selected and changed
+- Separated tree structure from agent state so many characters can use one compiled tree without copying it
+- Compiled graphs into compact arrays so editor data and tools stay out of the build
+- Reused runtime buffers so the core does not need to recreate them on each tree update
+- Created a visual editor with hints and checks so the game designer can build and tune behavior without changing code
+- Added runtime graph debugging so the developer can see active branches and execution statuses in the Unity Editor
+- Created a typed API for actions and context in place of a Blackboard. Dependencies are passed explicitly or through DI, and behavior integrates with ECS
+- Wrote tests for node execution and interrupts so changes to the logic can be checked automatically
+GitHub: https://github.com/vadimburym/DODBT
+DODBT overview: building behavior trees and using the plugin: https://vadimburym.ru/assets/videos/dodbt/reddit-demo-web.mp4
+DODBT visual editor and debugging demo: https://vadimburym.ru/assets/videos/dodbt/demo-1010-web.mp4
+DODBT visual editor: behavior tree, node settings and compilation log: https://vadimburym.ru/assets/images/projects/dodbt/graph-editor.png
+Debugging DODBT during play: active branches and node statuses next to the test scene: https://vadimburym.ru/assets/images/projects/dodbt/debug-gallery-review.webp
+
+Half Empty
+https://vadimburym.ru/en/projects/half-empty/
+Team Lead / Unity Developer | May 2026
+First-person Rhythm Shooter | Demo
+Technologies: Unity, C#, FMOD, Jira, Bitbucket
+Led a team of four and developed the architecture and all mechanics of a rhythm shooter. Integrated FMOD and built tools to set up levels to music. Organized work in Jira and Bitbucket. Together we released a three-level demo
+
+Half Empty is a first-person rhythm shooter inspired by osu! and Geometry Dash. Players shoot approaching masks to the music. The color of the current bullet determines which part of a black-and-white mask to hit. The mechanic combines rhythm, accurate aim and quick shifts in attention.
+
+I led a team of four: a Unity developer, two technical artists and a sound designer. I organized the team’s work, designed the architecture and implemented all game mechanics. I integrated FMOD and built editor tools to set enemy spawns to musical beats. Together we published a demo with settings and three levels set to different electronic tracks
+My responsibility: Architecture · Game mechanics · FMOD integration · Editor tools · Team workflow
+Achievements:
+- Organized the team’s work in Jira and Bitbucket, assigned tasks and coordinated development, technical art and sound
+- Designed the architecture and implemented all game mechanics, combining shooting, rhythm and target selection by bullet color in one game loop
+- Integrated FMOD with Unity and built audio services to connect sounds and music prepared by the sound designer
+- Built a level editor and Inspector settings so mask spawn times, counts and directions can be set by musical beat without changing code
+- Implemented game settings and refined the UX to get interactions with the game systems ready for the demo
+- Released a demo with the team featuring three levels set to different tracks, available on the game jam platform
+Jammer: https://jammer.website/en/games/5
+Half Empty gameplay: https://vadimburym.ru/assets/videos/half-empty/gameplay-1011-2-web.mp4
+Half Empty level editor: setting mask spawns by beat and position: https://vadimburym.ru/assets/images/projects/half-empty/level-editor-gallery-review.webp
+Half Empty tutorial screen: shooting rhythm, bullet colors and scoring: https://vadimburym.ru/assets/images/projects/half-empty/tutorial-gallery-review.webp
+Half Empty gameplay: masks, rhythm bar and hit streak: https://vadimburym.ru/assets/images/projects/half-empty/gameplay-gallery-review.webp
+
+DOTS Battle Simulator Prototype
+https://vadimburym.ru/en/projects/dots-battle-simulator/
+Unity Developer / Prototype author | Q1–Q2 2026
+Battle Simulator | Unity DOTS Prototype
+Technologies: Unity 6, C#, DOTS / Entities, Burst / Jobs, Entities Graphics, URP / HLSL, VContainer, Addressables, UniTask, R3, Odin Inspector
+Built a battle simulator with Unity DOTS, adapted my Behaviour Tree for Burst and Jobs, and created a VAT pipeline for GPU unit animation. Built a modular architecture with explicit control over ECS system lifecycles and tools for configuration and debugging
+
+A Unity 6 DOTS battle simulator prototype for controlling large numbers of units. The main task was to combine decision-making, target searches and animation in an architecture designed to scale the simulation.
+
+Developed my DODBT plugin into a separate DOTS module with Burst, Jobs and BlobAsset. Built a VAT pipeline with animation baking to textures, an ECS runtime and shaders for Entities Graphics. Built the application around a persistent Bootstrap scene, separate Meta and Gameplay modes, and explicit control of resource loading, DI contexts and ECS systems
+My responsibility: DOTS / ECS · Game AI · GPU animation · Architecture · Editor tools
+Achievements:
+- Designed BT execution for DOTS with a shared structure in a BlobAsset and separate agent states, enabling Burst and parallel processing with Jobs
+- In a test with 10,000 agents and a 34-node tree, cut BT processing time from 126.25 to 1.00 ms using Burst and Jobs, about 126 times faster
+- Separated the shared BT structure in a BlobAsset from agent states so many units can use one tree without copying its structure
+- Built code generation for leaf nodes and runtime debugging so new logic can be connected without writing glue code by hand and its execution can be tracked in the editor
+- Built a VAT pipeline with baking, an ECS runtime and HLSL shaders. Animations run on the GPU with clip blending, correct shadows and depth passes
+- Implemented a battlefield grid and a spatial index for target searches so units can find enemies in nearby cells without scanning the whole army
+- Set up mode startup with a state machine, VContainer and resource loaders so scenes, dependencies and ECS systems load and unload in a defined order
+- Created a single window for editing ScriptableObject configurations so the game designer can set up units, behavior and game systems in one place
+- Separated the UI and binary saves into modules so interfaces can be reused across modes and game code is independent of how data is stored
+BT timings · 10,000 agents · 34 nodes · AMD Ryzen 5 7500F (6 cores / 12 threads)
+BT processing mode | Time
+Without Burst or parallel processing | 126.25 ms
+Burst | 7.90 ms
+Burst + Jobs, 11 worker threads | 1.00 ms
+With BT updates at intervals of 0.2 s and a random offset per agent, the average load per frame was 0.1014 ms, P95 was 0.1290 ms, total CPU time was 1.008 ms, and GC allocations per tick were 0 B. This mode updates decisions less often. See the second gallery image for detailed measurements.
+GitHub: https://github.com/vadimburym/DOTS-Battle-Simulator-Prototype
+DOTS Battle Simulator Prototype demo: https://vadimburym.ru/assets/videos/dots-battle-simulator/demo-1012-2-web.mp4
+BT setup and timings: 10,000 agents, 34 nodes, Ryzen 5 7500F, 0.2 s update interval: https://vadimburym.ru/assets/images/projects/dots-battle-simulator/bt-benchmark.webp
+
+100 Kirieshek!
+https://vadimburym.ru/en/projects/100-kirieshek/
+Unity Developer | January 2026
+Hybrid Casual | Yandex Games / Web
+Technologies: Unity, C#
+Built and released a 2D merge clicker in Unity for Yandex Games with an artist. Handled all technical development and post-release support, tracked where players left and released updates. The game kept a rating above 75 for its first three months
+
+A 2D hybrid casual merge clicker inspired by Scrap 2. Players merge Kirieshki and progress through the game, with my own additions to the original concept.
+
+Built the Unity project with an artist. I handled all technical work, prepared the web version and published it on Yandex Games. In the first weeks after release, I tracked metrics and where players left, then used those findings for updates. The game’s rating on the platform stayed above 75 for its first three months
+My responsibility: Full-cycle Unity development · Game mechanics · Web release · Metrics analysis · Updates
+Achievements:
+- Built the entire technical side of the game in Unity and worked with an artist to take it from concept to release on Yandex Games
+- Implemented merging and game progression, adapting the Scrap 2 concept with my own theme and gameplay ideas
+- Analyzed metrics and player drop-off points in the first weeks after release to choose improvements and release updates
+- Supported the game after release. Its Yandex Games rating stayed above 75 for the first three months
+Yandex Games: https://yandex.ru/games/app/100-kirieshek-evoliutsiia-merge-kliker-489322?utm_source=app_page
+100 Kirieshek! gameplay: https://vadimburym.ru/assets/videos/100-kirieshek/gameplay-1013-web.mp4
+
+Harvest Garden
+https://vadimburym.ru/en/projects/harvest-garden/
+Solo Unity Developer | Q3–Q4 2025
+Incremental | PC Prototype
+Technologies: Unity, C#, LeoEcsLite, Zenject, UniRx, Odin Inspector
+Created a solo prototype of a pixel art incremental game for PC about growing plants, getting seeds with new genomes and developing a garden. Designed modular upgrade, stat and currency systems with Unity Editor settings and a reactive UI
+
+A solo pixel art incremental game project for PC, set in an isometric garden. Players buy seeds, plant and water them, harvest crops and spend gold to grow their garden. Seeds with new genomes and rare plants add a search for new varieties to the economic loop. The prototype also includes rain.
+
+I developed the game mechanics and architecture myself. The main technical focus was extensible meta-progression. Upgrades are assembled from conditions and effects in Unity configurations, while stats, currencies and the UI have their own systems. The project is an unpublished prototype
+My responsibility: Game mechanics · Architecture · Meta-progression · Reactive UI
+Achievements:
+- Implemented planting, watering, harvesting and seed purchases as the basis for the prototype and its economy
+- Added seeds with new genomes and rare plants so growing the garden also involves finding new varieties
+- Designed upgrades from reusable conditions and effects so new combinations can be configured in the Unity Editor without a separate class for every upgrade
+- Separated stats and currencies into independent systems so game mechanics and upgrades share a common basis for calculations and the economy
+- Separated game logic from presentation with read models and UniRx so the interface responds to changes in upgrade level, price and availability
+Harvest Garden gameplay: https://vadimburym.ru/assets/videos/harvest-garden/gameplay-1015-web.mp4
+Harvest Garden upgrade editor in Unity: https://vadimburym.ru/assets/images/projects/harvest-garden/screen-1.webp
+Harvest Garden settings: https://vadimburym.ru/assets/images/projects/harvest-garden/screen-2-gallery-review.webp
+Rain and plant growth in Harvest Garden: https://vadimburym.ru/assets/images/projects/harvest-garden/screen-3.webp
+
+Golbeshnik
+https://vadimburym.ru/en/projects/golbeshnik/
+Unity Developer | 2024–2025
+Sound Horror | Windows
+Technologies: Unity, C#, GameCycle
+Helped develop an atmospheric 3D horror game in a student team of five mentored by 1C Game Studios. Built the project’s architecture with a custom GameCycle and implemented QTEs and individual game mechanics
+
+An atmospheric 3D sound-based horror game about a young peasant woman left alone in a house with a supernatural threat. Sound and surroundings build tension without jump scares.
+
+A student team project mentored by 1C Game Studios. In a team of five, I built the architecture and a custom game lifecycle called GameCycle on which the team developed the game systems. I implemented QTEs and individual mechanics and shared development of the other systems with other team members.
+My responsibility: Project architecture · QTE · Game mechanics
+Achievements:
+- Built the architecture and a custom GameCycle that the team used to develop and integrate game mechanics
+- Implemented Quick Time Events (QTEs) and individual game mechanics, adding interactive sequences to gameplay
+itch.io: https://alexa-sp.itch.io/golbeshnik
+Golbeshnik gameplay: https://vadimburym.ru/assets/videos/golbeshnik/gameplay-1016-2-web.mp4
+
+Bombertale
+https://vadimburym.ru/en/projects/bombertale/
+Game author | 2023–2024
+2D Roguelike | Windows
+Technologies: Python, Kivy
+My first game, a 2D roguelike inspired by Bomberman. I developed it myself in Python/Kivy with custom physics, collision handling and a game loop. In 2023–2024 I ported and adapted it to a modern game engine
+
+A solo 2D roguelike inspired by Bomberman with bomb placement, destructible walls and enemies. Development started in 2019. The original version was written entirely in Python with Kivy.
+
+In 2023–2024 I ported and adapted the game to a modern game engine. The original version is available on itch.io. The adapted version has not been published.
+My responsibility: Game mechanics · Custom physics and collisions · Game loop · Game port
+Achievements:
+- Implemented physics, collision handling and a game loop myself in Python/Kivy, building the foundation for the game mechanics
+- Ported and adapted the game to a modern game engine in 2023–2024
+itch.io: https://vadimburym.itch.io/bombertale
+Bombertale gameplay: https://vadimburym.ru/assets/videos/bombertale/gameplay-1017-web.mp4
+
+Core Skills
+The levels below are self-assessments of individual skills.
+OOP: 4/5 (Solve unusual problems). Replaced upgrade inheritance with a combination of checks and effects. Each new behavior can be added as a separate block.
+SOLID: 4/5 (Solve unusual problems). Adapted a behavior tree for Burst. Limited how the core can be extended while keeping it possible to add actions without changing tree traversal.
+Design patterns: 4/5 (Solve unusual problems). Used a state machine to start and switch game modes without recreating shared services or loading unnecessary assets.
+Modular architecture: 4/5 (Solve unusual problems). Moved game settings into a module with its own UI and reused it in another project, saving the team from building it again.
+Data-driven architecture: 3/5 (Apply independently). Built a ScriptableObject configuration layer and connected it to the game systems so the designer can adjust balance and content without changing code.
+Dependency Injection (DI): 4/5 (Solve unusual problems). Built a shared system lifecycle with VContainer to manage startup, pause and cleanup in one place. Also worked with Zenject.
+Event-driven communication: 3/5 (Apply independently). Built a UI request bus in a separate ECS world so game mechanics can change without editing UI buttons.
+Reactive programming: 3/5 (Apply independently). Combined purchase conditions and handled model switching in a reactive Presenter so the UI shows the current upgrade state. Worked with UniRx and R3.
+ECS / Data-Oriented Design: 4/5 (Solve unusual problems). Optimized a Behaviour Tree for DOTS with Burst and Jobs, cutting processing time for 10,000 agents from 126.25 to 1.00 ms in the Unity Editor.
+FSM / HFSM: 3/5 (Apply independently). Implemented FSMs for game modes and HFSMs in Unity learning prototypes.
+Behaviour Tree: 5/5 (Teach others). Built a data-oriented Behaviour Tree with Parallel nodes and interrupts for DOTS/Burst. Explained its design and performance gains in conference talks.
+Utility AI: 5/5 (Teach others). Built custom AI using Utility AI for a turn-based tactics game on an isometric grid, explained the system to the team and built an AI agent to help maintain it
+GOAP: 1/5 (Know the theory)
+Navigation / Pathfinding: 3/5 (Apply independently). Implemented A* in Bombertale and integrated Unity NavMesh with ECS for NPC movement, pursuit and patrol.
+AI perception and coordination: 4/5 (Solve unusual problems). Built ECS sensors with timed updates and a spatial grid to limit target searches to nearby cells.
+Algorithms and data structures: 4/5 (Solve unusual problems). Changed Behaviour Tree execution from recursion to iterative traversal with explicit state to adapt the algorithm for DOTS/Burst.
+C# types and generics: 3/5 (Apply independently). Separated node context and state using generics and ref so one Behaviour Tree API can work with different actions.
+LINQ: 3/5 (Apply independently). Used LINQ in the Behaviour Tree editor to filter connections and process selected graph nodes.
+Exceptions / IDisposable: 3/5 (Apply independently). Set up cleanup for subscriptions, files and resources when game services shut down.
+Reflection / Code generation: 3/5 (Apply independently). Built an editor tool that generates C# tables for calling Behaviour Tree leaf nodes through Burst function pointers.
+Async / Await: 3/5 (Apply independently). Added cancellation to music stage preparation so restarting or leaving the game stops the previous countdown.
+Multithreading: 3/5 (Apply independently). Sent FMOD events to the main thread through ConcurrentQueue so game logic can process them in its own loop.
+Unity lifecycle: 3/5 (Apply independently). Set up startup and cleanup for game contexts, ECS systems and services during game state transitions.
+Scenes and prefabs: 3/5 (Apply independently). Set up additive scene loading. The previous game scene unloads while the bootstrap scene keeps shared services available throughout the application.
+Game time: 3/5 (Apply independently). Linked the rhythm and shooting windows in Half Empty to the FMOD music position so game events follow the track timeline.
+Serialization / ScriptableObject: 3/5 (Apply independently). Moved upgrade conditions and effects into ScriptableObjects with SerializeReference so configurations can be built from separate blocks.
+Input systems: 3/5 (Apply independently)
+Unity physics: 3/5 (Apply independently)
+Game math: 3/5 (Apply independently)
+Probability: 2/5 (Apply with support)
+CPU profiling: 3/5 (Apply independently). Measured Behaviour Tree performance on 10,000 agents in the Unity Profiler and compared versions with Burst and Jobs.
+Memory / GC / Object Pooling: 3/5 (Apply independently). Built object pools and prewarmed game instances, with one shared service for reuse.
+Rendering optimization: 3/5 (Apply independently). Used VAT textures for large groups of units and sent animation states through a GPU buffer in the DOTS simulator.
+Jobs / Burst: 3/5 (Apply independently). Moved Behaviour Tree execution to a Burst IJobChunk so independent agents run through ScheduleParallel.
+UGUI: 3/5 (Apply independently). Built inventories, upgrade shops and pop-up windows with uGUI.
+UI Toolkit: 1/5 (Know the theory)
+IMGUI: 3/5 (Apply independently). Built level setup windows for Half Empty with a beat timeline and target spawn positions.
+GraphView: 3/5 (Apply independently). Built a Behaviour Tree editor with GraphView to show nodes, connections and execution state.
+Odin Inspector: 3/5 (Apply independently). Built a GameManager with Odin Inspector to create and configure Harvest Garden upgrades in one editor window.
+UI optimization: 3/5 (Apply independently). Updated the UI through subscriptions to data changes and used sprite atlases to pack UI sprites into shared textures.
+Addressables: 2/5 (Apply with support). Built a service that loads Addressables by label, caches handles and releases the resources of each game context.
+Unity assets and packages: 3/5 (Apply independently). Packaged DODBT as an installable Unity package with separate runtime code, editor tools and tests.
+Saving / Serialization: 3/5 (Apply independently). Built a save repository with interchangeable storage strategies to keep game data separate from files and PlayerPrefs.
+Localization: 2/5 (Apply with support). Worked with the Unity Localization module.
+URP: 3/5 (Apply independently). Used URP and custom fog materials to style the environments in Exodus Core.
+Fragment shaders: 3/5 (Apply independently). Created a configurable fog shader for Exodus Core with adjustable height, direction and color to match the look of each location.
+Vertex shaders: 4/5 (Solve unusual problems). Implemented VAT for large groups of DOTS units by baking clips into textures and playing animations in the vertex shader.
+Compute shaders: 1/5 (Know the theory)
+Lighting / Lightmapping: 2/5 (Apply with support)
+VFX / Particle System: 2/5 (Apply with support). Created visual effects and styled the environments in Exodus Core.
+Animator: 2/5 (Apply with support)
+Cinemachine: 1/5 (Know the theory)
+DOTween: 3/5 (Apply independently)
+Audio: 3/5 (Apply independently). Integrated FMOD into Half Empty for music, sound events and sending rhythm data to game systems.
+Tests, NUnit: 3/5 (Apply independently). Wrote Behaviour Tree tests for node statuses, interrupts and leaf node lifecycles, including Parallel.
+Builds / IL2CPP: 2/5 (Apply with support). Prepared and released the WebGL version of 100 Kirieshek! on Yandex Games, then released updates.
+CI/CD: 2/5 (Apply with support). Set up CI/CD for the portfolio website.
+AI in development: 4/5 (Solve unusual problems). I regularly use Claude Fable and GPT Astra, build AI agents to speed up work and check the results myself.
+Networking / Client-server: 1/5 (Know the theory)
+Network gameplay: 1/5 (Know the theory)
+Prediction / Lag Compensation: 1/5 (Know the theory)
+C++ / Native Integration: 2/5 (Apply with support). Used native FMOD callbacks and marshaled rhythm data into C# when integrating the audio system.
+XR: 2/5 (Apply with support). Built a VR shooting range for a study project.
+Git: 3/5 (Apply independently)
+Code Review: 3/5 (Apply independently). Reviewed code in Half Empty and found errors in the team’s code.
+Documentation: 3/5 (Apply independently). Wrote the DODBT README covering installation, the API, examples and limitations so developers can learn to use the plugin from its documentation.
+Test-driven development (TDD): 2/5 (Apply with support)
+
+Meta Skills
+The levels below are self-assessments of individual skills.
+Game design: 2/3 (Advanced). Balanced a turn-based tactics game in Excel and developed my own hybrid casual games and roguelikes.
+Technical art: 2/3 (Advanced). Created shaders and visual effects for Exodus Core and brought the environments together under a consistent style in Unity.
+UI/UX design: 2/3 (Advanced). Worked on the UI/UX of the portfolio site and several Exodus Core interfaces.
+Figma: 2/3 (Advanced). Created UI/UX layouts and designed Kickstarter materials for Exodus Core.
+Adobe Photoshop: 2/3 (Advanced). Created the Exodus Core Steam capsule and edited game screenshots. I regularly use Adobe Photoshop for visual work.
+CapCut: 1/3 (Basic). Edited gameplay videos and game trailers in CapCut, including the project demos on this site.
+Jira: 1/3 (Basic). Set up a Jira project and organized tasks for the four-person Half Empty game jam team.
+Gaea: 1/3 (Basic). Prepared terrain and texture maps in Gaea, built the Exodus Core biomes and finished their visual style in Unity.
+Discord: 1/3 (Basic). Created Discord servers for indie games.
+Aseprite: 1/3 (Basic). Drew pixel art textures for Harvest Garden in Aseprite.
+
+EDUCATION
+2019–2024: Southern Federal University. Bachelor’s degree. Applied Mathematics and Computer Science
+2024–2026: Southern Federal University. Master’s degree. Fundamental Computer Science and Information Technology. Mobile Application and Computer Game Development
+2025–2026: Otus Online Education LLC. Professional development. Unity Game Developer. Professional

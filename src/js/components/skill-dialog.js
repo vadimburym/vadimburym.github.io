@@ -1,6 +1,6 @@
 import { createLevel, element } from './skill-list.js?v=20261010-readable';
 import { createSkillGallery } from './skill-gallery.js?v=20261010-readable';
-import { mountUrlDialog } from './url-dialog.js?v=20261010-readable';
+import { mountUrlDialog } from './url-dialog.js?v=20261121-lang';
 
 export function mountSkillDialog(catalogs) {
   mountUrlDialog({

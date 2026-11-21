@@ -1,0 +1,9 @@
+# Vadim Burym — Unity Developer
+
+> Public portfolio: game AI, architecture and projects for PC and web.
+
+- [Full portfolio text](https://vadimburym.ru/en/portfolio.txt): projects, personal contributions, skills, education and links.
+- [Projects](https://vadimburym.ru/en/projects/)
+- [Core Skills](https://vadimburym.ru/en/skills/)
+- [Meta Skills](https://vadimburym.ru/en/meta-skills/)
+- [CV](https://vadimburym.ru/assets/documents/vadim-burym-cv-en.pdf)

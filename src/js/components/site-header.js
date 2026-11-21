@@ -1,3 +1,4 @@
+import { languageSwitch, otherLanguageUrl } from '/js/lib/language.js';
 import { element } from './skill-list.js?v=20261010-readable';
 import { animate, stopMotion } from '../lib/motion.js?v=20261010-readable';
 
@@ -27,6 +28,17 @@ export function mountHeader() {
   const contact = element('a', 'link', 'Связаться ↗');
   contact.href = '/#contacts';
   header.replaceChildren(brand, toggle, nav, contact);
+  header.insertAdjacentHTML('beforeend', languageSwitch(location.pathname));
+  const language = header.lastElementChild;
+  const updateLanguageUrl = () => {
+    language.href = otherLanguageUrl(location.pathname, location.search, location.hash);
+  };
+  updateLanguageUrl();
+  for (const event of ['focus', 'pointerdown', 'contextmenu', 'click']) {
+    language.addEventListener(event, updateLanguageUrl);
+  }
+  window.addEventListener('popstate', updateLanguageUrl);
+  window.addEventListener('hashchange', updateLanguageUrl);
 
   const compact = matchMedia('(max-width: 900px)');
   let menuRevision = 0;
